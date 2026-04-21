@@ -1,0 +1,65 @@
+[project]
+name = "jupyter-ai-devrepo"
+version = "0.0.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10, <3.14"
+dependencies = [
+    # environment requirements
+    "pip",
+    "jupyterlab>=4",
+    # all required submodules
+    "jupyter_ai",
+    "jupyter_server_documents",
+    "jupyterlab_chat",
+    "jupyter_ai_router",
+    "jupyter_ai_persona_manager",
+    "jupyter_ai_chat_commands",
+    "jupyterlab_commands_toolkit",
+    "jupyter_ai_acp_client",
+    "jupyter_server_mcp",
+    "jupyter_ai_tools",
+    # test dependencies
+    "coverage",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pytest-jupyter[server]>=0.6.0",
+    # docs dependencies
+    "docutils",
+    "myst_parser",
+    "nbsphinx",
+    "nbsphinx-link",
+    "shibuya",
+    "sphinx-design",
+    "sphinx-tabs",
+    "sphinx-copybutton",
+]
+
+[project.optional-dependencies]
+optional = [
+    "jupyter_ai_litellm",
+    "jupyter_ai_jupyternaut",
+    "jupyter_ai_magic_commands",
+    "jupyter_ai_quickagent",
+]
+
+[tool.uv.sources]
+jupyter_ai = { workspace = true }
+jupyter_server_documents = { workspace = true }
+jupyterlab_chat = { workspace = true }
+jupyter_ai_router = { workspace = true }
+jupyter_ai_persona_manager = { workspace = true }
+jupyter_ai_litellm = { workspace = true }
+jupyter_ai_magic_commands = { workspace = true }
+jupyter_ai_chat_commands = { workspace = true }
+jupyterlab_commands_toolkit = { workspace = true }
+jupyter_ai_jupyternaut = { workspace = true }
+jupyter_ai_acp_client = { workspace = true }
+jupyter_server_mcp = { workspace = true }
+jupyter_ai_tools = { workspace = true }
+jupyter_ai_quickagent = { workspace = true }
+
+[tool.uv.workspace]
+members = ["jupyter*/", "jupyter-chat/python/*"]
+exclude = ["jupyter_ai_devrepo.egg*", "jupyter-chat"]
