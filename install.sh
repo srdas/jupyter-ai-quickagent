@@ -72,6 +72,22 @@ git clone --recurse-submodules \
 
 cd "$TARGET_DIR"
 
+# ── Optional: clone jupyter-ai-quickagent ────────────────────────────
+echo ""
+read -rp "Clone and install jupyter-ai-quickagent? [y/N] " qa_answer
+if [[ "$qa_answer" =~ ^[Yy]$ ]]; then
+  echo "Cloning jupyter-ai-quickagent ..."
+  git clone https://github.com/srdas/jupyter-ai-quickagent.git
+
+  echo "Registering jupyter-ai-quickagent in pyproject.toml ..."
+  # Add to [project.optional-dependencies] optional list
+  sed -i.bak '/^    "jupyter_ai_magic_commands",$/a\
+    "jupyter_ai_quickagent",' pyproject.toml && rm -f pyproject.toml.bak
+  # Add to [tool.uv.sources]
+  sed -i.bak '/^jupyter_ai_tools = { workspace = true }$/a\
+jupyter_ai_quickagent = { workspace = true }' pyproject.toml && rm -f pyproject.toml.bak
+fi
+
 # ── Collect all with optional submodules──────────────────────────────
 just pull-all
 
@@ -79,14 +95,6 @@ just pull-all
 echo ""
 echo "Pulling latest changes on all submodules ..."
 just mainline all
-
-# ── Optional: clone jupyter-ai-quickagent ────────────────────────────
-echo ""
-read -rp "Clone and install jupyter-ai-quickagent? [y/N] " qa_answer
-if [[ "$qa_answer" =~ ^[Yy]$ ]]; then
-  echo "Cloning jupyter-ai-quickagent ..."
-  git clone https://github.com/srdas/jupyter-ai-quickagent.git
-fi
 
 # ── Install with optional submodules──────────────────────────────
 just sync-all --refresh
@@ -170,7 +178,7 @@ echo "============================================"
 echo "  Installation complete!"
 echo ""
 echo "  To start JupyterLab:"
-echo "    cd ${TARGET_DIR}"
 echo "    source .venv/bin/activate"
+echo "    cd ${TARGET_DIR}"
 echo "    just start"
 echo "============================================"
