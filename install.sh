@@ -99,12 +99,13 @@ just mainline all
 # ── Install with optional submodules──────────────────────────────
 just sync-all --refresh
 
-# ── Install all packages ─────────────────────────────────────────────
+# ── Build and enable extensions ──────────────────────────────────────
 echo ""
-echo "Installing all packages (this may take a while) ..."
+echo "Building frontend assets and enabling extensions (this may take a while) ..."
 export VIRTUAL_ENV="$PWD/.venv"
 export PATH="$PWD/.venv/bin:$PATH"
-just install-all
+just build-all
+just enable-extensions
 
 # ── AI Persona Installation ──────────────────────────────────────────
 echo ""
