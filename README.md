@@ -1,6 +1,6 @@
 # jupyter-ai-quickagent
 
-<img src="static/quick_agent_logo.png" alt="QuickAgent Logo" width="200" align="left" style="margin-right: 15px;">
+<img src="static/quick_agent_logo.png" alt="QuickAgent Logo" width="300" align="left" style="margin-right: 15px;">
 
 A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) with an interactive agent configuration flow. This can be added as a submodule for `jupyter-ai` in `jupyter-ai-contrib`. Also provided is a one shot interactive installer that installs the contributor version of `jupyter-ai` and all CLIs from major providers. 
 
