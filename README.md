@@ -71,6 +71,24 @@ After setting up agents, you will see them in the chat:
 
 ![List agents](static/list_agents.png) 
 
+### Example
+
+A mathematician colleague, [Professor Dan Ostrov](https://webpages.scu.edu/ftp/dostrov/), wrote a short piece titled ``[What Are Good Math Questions?](https://github.com/srdas/skill-collection/blob/main/math_questions/Good%20Math%20Questions.pdf)'' and this is converted into a `SKILL.md` file stored anywhere on disk and referred to in the skill json file titled `mathq.json` shown later below. You can refer to the [skill file](https://github.com/srdas/skill-collection/blob/main/math_questions/skills/SKILL.md) to see the attributes of a good mathematical question that you want the `MathQ` agent to use.  
+
+Let's use the `MathQ` agent and have it generate a math question:
+
+![Math question](static/mathq_question.png)
+
+Here is the answer for the question it asked:
+
+![Math answer](static/mathq_answer.png)
+
+The agent will also tell you why this is a good question conforming to the attributes in the SKILL file. 
+
+![Math why](static/mathq_why.png)
+
+Of course, whether this is a good math question eventually is a matter of taste and judgment, which AI agents are not presumed to have. Hopefully, the SKILL file provides enough guidance. 
+
 ## How Authentication Works
 
 QuickAgent does **not** manage its own API keys. Instead, it reads the model ID and credentials from Jupyternaut's `ConfigManager`, which is populated through the **Settings > AI Settings** UI. Under the hood this uses [LiteLLM](https://docs.litellm.ai/), so any provider supported there (OpenAI, Anthropic, Azure, Google, AWS Bedrock, etc.) works automatically.
