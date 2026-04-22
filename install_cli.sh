@@ -19,6 +19,11 @@
 # ./install.sh              # clones into ./jupyter-ai-devrepo                                                                      # 
 # ./install.sh my-folder    # clones into ./my-folder   
 
+set -euo pipefail
+
+REPO_ORG="jupyter-ai-contrib"
+REPO_NAME="jupyter-ai-devrepo"
+TARGET_DIR="${1:-$REPO_NAME}"
 
 # ── AI Persona Installation ──────────────────────────────────────────
 echo ""
