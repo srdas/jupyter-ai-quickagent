@@ -164,7 +164,7 @@ fi
 # @Goose
 if ask_install "@Goose (goose-cli >= 1.8.0 via block/goose)"; then
   echo "Installing goose ..."
-  curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | bash
+  curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
 fi
 
 # ── Optional boto3 Installation ──────────────────────────────────────
