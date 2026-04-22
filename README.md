@@ -1,6 +1,10 @@
 # jupyter-ai-quickagent
 
-A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) with an interactive agent configuration flow.
+<img src="static/quick_agent_logo.png" alt="QuickAgent Logo" width="200" align="left" style="margin-right: 15px;">
+
+A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/langchain-ai/deepagents) with an interactive agent configuration flow. This can be added as a submodule for `jupyter-ai` in `jupyter-ai-contrib`. Also provided is a one shot interactive installer that installs the contributor version of `jupyter-ai` and all CLIs from major providers. 
+
+<br clear="left">
 
 ## Features
 
@@ -21,7 +25,7 @@ A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/
 
 ### Within the devrepo
 
-The package is included in the devrepo workspace as an optional dependency. From the devrepo root:
+The package will eventually be included in the devrepo workspace as an optional dependency. From the devrepo root:
 
 ```bash
 just sync          # or: uv sync --extra optional
@@ -29,8 +33,26 @@ just sync          # or: uv sync --extra optional
 
 ### Standalone
 
+To be done -- the package will be enabled for standalone installation. 
+
 ```bash
 pip install jupyter_ai_quickagent
+```
+
+### Install Everything
+
+In order to install [jupyter-ai](https://github.com/jupyterlab/jupyter-ai) using all the submodules in [jupyter-ai-contrib](https://github.com/jupyter-ai-contrib) you can use the installer provided in this repository, see [install.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install.sh). To use it: 
+
+```
+chmod a+x install.sh
+./install.sh
+```
+
+If you only want to install the various CLIs (e.g., Claude Code, Gemini CLI, Codex CLI, Kiro CLI, OpenCode CLI, etc.) from various providers, you can run the partial installer [install_cli.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install_cli.sh). 
+
+```
+chmod a+x install_cli.sh
+./install_cli.sh
 ```
 
 ## Quick Start
@@ -41,7 +63,13 @@ pip install jupyter_ai_quickagent
 4. Send `@QuickAgent create` to build your first agent.
 5. Follow the five interactive prompts (name, purpose, tools, search tools, skill files).
 
-See [USAGE.md](USAGE.md) for the full walkthrough and command reference.
+See [USAGE.md](USAGE.md) for the full walkthrough and command reference. You can see how `QuickAgent` appears as one of the Personas in the chat: 
+
+![Setup at-mention](static/setup_at_mention.png) 
+
+After setting up agents, you will see them in the chat: 
+
+![List agents](static/list_agents.png) 
 
 ## How Authentication Works
 
@@ -57,7 +85,7 @@ just lint       # run linters
 
 ## Update `pyproject.toml`
 
-In the following two places. 
+The installler [install.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install.sh) will automatically update the `pyproject.toml` of the `jupyter-ai-devrepo` workspace in the following two places. 
 
 ```toml
 [project.optional-dependencies]
@@ -86,3 +114,27 @@ jupyter_server_mcp = { workspace = true }
 jupyter_ai_tools = { workspace = true }
 jupyter_ai_quickagent = { workspace = true }
 ```
+
+## Using QuickAgent
+
+Please refer to detailed usage instructions in [USAGE.md](https://github.com/srdas/jupyter-ai-quickagent/blob/main/USAGE.md). 
+
+## How are agents stored?
+
+Each agent is saved as a JSON file in `~/.jupyter/jupyter-ai/quickagents/`. The filename is the lowercase agent name (e.g., `mathq.json` for the MathQ agent shown in the screenshot above). Here is an example:
+
+```json
+{
+  "name": "MathQ",
+  "purpose": "Generate and solve math questions that test deep conceptual understanding rather than mechanical computation or memorized formulas.",
+  "tools": [
+    "execute", "read_file", "write_file", "edit_file",
+    "ls", "glob", "grep", "python_repl", "web_fetch", "todo"
+  ],
+  "search_tools": [],
+  "skills_dir": "/path/to/skill-collection/math_questions",
+  "system_prompt": ""
+}
+```
+
+The `@QuickAgent list` command reads this directory and displays all available agents, as shown in the [list_agents.png](#) image above. To remove an agent, simply delete its JSON file from the `quickagents/` folder, or use the `@QuickAgents delete <name of agent>` prompt in the chat panel. 

@@ -50,17 +50,18 @@ Send `@QuickAgent create` and follow the interactive prompts:
 
 Available tools:
 
-| Tool | Description |
-|------|-------------|
-| `execute` | Run shell commands (bash) |
-| `read_file` | Read file contents from disk |
-| `write_file` | Create or overwrite files |
-| `edit_file` | Make targeted edits to existing files |
-| `ls` | List directory contents |
-| `glob` | Find files matching a pattern |
-| `grep` | Search file contents with regex |
-| `python_repl` | Execute Python code in a REPL |
-| `todo` | Create and manage a task/todo list |
+| Tool          | Description                           |
+| ------------- | ------------------------------------- |
+| `execute`     | Run shell commands (bash)             |
+| `read_file`   | Read file contents from disk          |
+| `write_file`  | Create or overwrite files             |
+| `edit_file`   | Make targeted edits to existing files |
+| `ls`          | List directory contents               |
+| `glob`        | Find files matching a pattern         |
+| `grep`        | Search file contents with regex       |
+| `python_repl` | Execute Python code in a REPL         |
+| `web_fetch`   | Fetch and read content from a URL     |
+| `todo`        | Create and manage a task/todo list    |
 
 ```
 @QuickAgent default
@@ -74,13 +75,13 @@ You can also type `all`, `none`, or a comma-separated list like `execute, read_f
 
 Available search tools:
 
-| Tool | Description | API Key Required |
-|------|-------------|-----------------|
-| `duckduckgo_search` | Web search (free) | None |
-| `tavily_search` | AI-powered web search | `TAVILY_API_KEY` |
-| `wikipedia` | Wikipedia articles | None |
-| `arxiv` | Academic papers | None |
-| `pubmed` | Biomedical literature | None |
+| Tool                | Description           | API Key Required |
+| ------------------- | --------------------- | ---------------- |
+| `duckduckgo_search` | Web search (free)     | None             |
+| `tavily_search`     | AI-powered web search | `TAVILY_API_KEY` |
+| `wikipedia`         | Wikipedia articles    | None             |
+| `arxiv`             | Academic papers       | None             |
+| `pubmed`            | Biomedical literature | None             |
 
 ```
 @QuickAgent duckduckgo_search, wikipedia
@@ -122,15 +123,15 @@ Your agent is saved and immediately activated!
 
 All commands are sent as chat messages to `@QuickAgent`:
 
-| Message | Description |
-|---------|-------------|
-| `@QuickAgent create` | Start the interactive agent creation wizard |
-| `@QuickAgent list` | List all saved agents with their configurations |
-| `@QuickAgent use <name>` | Activate a saved agent for the current conversation |
-| `@QuickAgent run <name>` | Run a saved agent |
-| `@QuickAgent info <name>` | Show detailed configuration for an agent |
-| `@QuickAgent delete <name>` | Delete a saved agent |
-| `@QuickAgent help` | Show the help menu |
+| Message                     | Description                                         |
+| --------------------------- | --------------------------------------------------- |
+| `@QuickAgent create`        | Start the interactive agent creation wizard         |
+| `@QuickAgent list`          | List all saved agents with their configurations     |
+| `@QuickAgent use <name>`    | Activate a saved agent for the current conversation |
+| `@QuickAgent run <name>`    | Run a saved agent                                   |
+| `@QuickAgent info <name>`   | Show detailed configuration for an agent            |
+| `@QuickAgent delete <name>` | Delete a saved agent                                |
+| `@QuickAgent help`          | Show the help menu                                  |
 
 **Note:** Commands are plain keywords after the `@QuickAgent` mention, not slash commands. Messages starting with `/` are intercepted by the Jupyter AI router and will not reach the persona.
 
