@@ -8,6 +8,8 @@ A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/
 
 ## Features
 
+This is an early attempt at building a Persona that can create a collection of personal agents for re-use. 
+
 - **Interactive agent builder** — step-by-step setup via chat (name, purpose, tools, search, skill files)
 - **Shared LLM authentication** — automatically uses the model and credentials configured in Jupyter AI's **Settings > AI Settings** (via LiteLLM), so there is no separate API key setup
 - **Persistent agents** — saved to disk and reusable across sessions
@@ -23,6 +25,7 @@ A Jupyter AI persona that implements [LangChain Deep Agents](https://github.com/
 
 ## Installation
 
+<!--
 ### Within the devrepo
 
 The package will eventually be included in the devrepo workspace as an optional dependency. From the devrepo root:
@@ -40,6 +43,9 @@ pip install jupyter_ai_quickagent
 ```
 
 ### Install Everything
+-->
+
+It is easiest to install this package with Jupyter AI one-shot. You will be prompted to install the quickagent repo. 
 
 In order to install [jupyter-ai](https://github.com/jupyterlab/jupyter-ai) using all the submodules in [jupyter-ai-contrib](https://github.com/jupyter-ai-contrib) you can use the installer provided in this repository, see [install.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install.sh). To use it: 
 
