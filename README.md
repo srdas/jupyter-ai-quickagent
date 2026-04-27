@@ -162,3 +162,59 @@ Each agent is saved as a JSON file in `~/.jupyter/jupyter-ai/quickagents/`. The 
 ```
 
 The `@QuickAgent list` command reads this directory and displays all available agents, as shown in the [list_agents.png](#) image above. To remove an agent, simply delete its JSON file from the `quickagents/` folder, or use the `@QuickAgents delete <name of agent>` prompt in the chat panel. 
+
+
+## Local non-dev install
+
+Let's say you have installed `jupyter-ai` in a local env in a folder `~/Test/v3/.venv/`. Then, here's how to install jupyter-ai-quickagent into your `~/Test/v3/.venv`   environment.                                                                
+
+### Installation Steps 
+
+Your target venv should already have `jupyter_ai_persona_manager` and `jupyter_ai_jupyternaut` (the key              
+dependencies). If not, installed them with 
+
+```
+uv pip install "jupyter-ai[jupyternaut]"
+```
+
+Then, you just need to pip-install this package in editable/development mode. Run:              
+
+```
+source ~/Test/v3/.venv/bin/activate
+```                                               
+
+### Install jupyter-ai-quickagent in editable mode (from your local clone)
+
+Clone `jupyter-ai-quickagent` as follows:
+
+```
+git clone https://github.com/srdas/jupyter-ai-quickagent.git
+```
+
+Then install it as follows (if you used `uv` to create the environment, then go to the next subsection):
+
+```
+pip install -e <path-to-local-clone>/jupyter-ai-quickagent
+```
+
+This will:
+
+1. Install the package and register the quickagent entry point under `jupyter_ai.personas`
+2. Pull in missing dependencies (deepagents, langchain-community, ddgs)
+3. Keep it editable so changes you make in /Users/sanjivda/CODE/jupyter-ai-quickagent/ are immediately reflected
+
+### Install if the env was created with `uv`   
+
+Or install with `uv` (if your venv was created by `uv`):      
+
+```
+uv pip install -e /Users/sanjivda/CODE/jupyter-ai-quickagent --python ~/Test/v3/.venv/bin/python
+```
+
+After installing, confirm the persona entry point is registered:                                         
+
+```                  
+~/Test/v3/.venv/bin/python -c "from importlib.metadata import entry_points; eps = entry_points(group='jupyter_ai.personas'); print([e.name for e in eps])"                                 
+```
+
+You should see 'quickagent' in the list.
