@@ -219,6 +219,6 @@ Each agent is saved as a JSON file in `~/.jupyter/jupyter-ai/quickagents/`. The 
 }
 ```
 
-The `@QuickAgent list` command reads this directory and displays all available agents, as shown in the [list_agents.png](#) image above. To remove an agent, simply delete its JSON file from the `quickagents/` folder, or use the `@QuickAgents delete <name of agent>` prompt in the chat panel. 
+The `@QuickAgent list` command reads this directory and displays all available agents, as shown in the [image](#List_agents) above. To remove an agent, simply delete its JSON file from the `quickagents/` folder, or use the `@QuickAgents delete <name of agent>` prompt in the chat panel. 
 
 
