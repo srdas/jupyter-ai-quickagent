@@ -1,10 +1,12 @@
 """QuickAgent persona for Jupyter AI using LangChain Deep Agents."""
 
+import asyncio
 import os
+import time
 from typing import Any, Optional
 
 from jupyter_ai_persona_manager import BasePersona, PersonaDefaults
-from jupyterlab_chat.models import Message
+from jupyterlab_chat.models import Message, NewMessage as _NewMessage
 
 from .agent_store import (
     COMMON_TOOLS,
@@ -534,6 +536,33 @@ class QuickAgentPersona(BasePersona):
             self._active_agent_name = config.name
             return
 
+        start_time = time.monotonic()
+
+        # Create a timer message that ticks every second while the agent runs
+        timer_id = self.ychat.add_message(
+            _NewMessage(body="*Elapsed: 0s*", sender=self.id),
+            trigger_actions=[],
+        )
+
+        async def _tick_timer():
+            try:
+                while True:
+                    await asyncio.sleep(1)
+                    elapsed = int(time.monotonic() - start_time)
+                    self.ychat.update_message(
+                        Message(
+                            id=timer_id,
+                            body=f"*Elapsed: {elapsed}s*",
+                            time=time.time(),
+                            sender=self.id,
+                            raw_time=False,
+                        )
+                    )
+            except asyncio.CancelledError:
+                pass
+
+        timer_task = asyncio.create_task(_tick_timer())
+
         try:
             model = self._get_chat_model()
 
@@ -609,6 +638,18 @@ class QuickAgentPersona(BasePersona):
         except Exception as e:
             self.log.exception("Error running deep agent.")
             self.send_message(f"**Error running agent:** {e}")
+        finally:
+            timer_task.cancel()
+            elapsed = time.monotonic() - start_time
+            self.ychat.update_message(
+                Message(
+                    id=timer_id,
+                    body=f"*Completed in {elapsed:.1f}s*",
+                    time=time.time(),
+                    sender=self.id,
+                    raw_time=False,
+                )
+            )
 
     def _build_agent(self, config: AgentConfig, model, system_prompt: str):
         """Build a deep agent from a saved configuration, using the provided LLM."""
