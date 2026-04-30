@@ -52,6 +52,7 @@ class QuickAgentPersona(BasePersona):
         self._setup_state: str = STATE_IDLE
         self._pending_config: dict[str, Any] = {}
         self._active_agent_name: Optional[str] = None
+        self._conversation_history: list[dict[str, str]] = []
 
     @property
     def defaults(self):
@@ -110,6 +111,7 @@ class QuickAgentPersona(BasePersona):
             config = load_agent(arg)
             if config:
                 self._active_agent_name = arg
+                self._conversation_history = []
                 self.send_message(
                     f"**Switched to agent: {config.name}**\n\n"
                     f"*{config.purpose}*\n\n"
@@ -550,7 +552,9 @@ class QuickAgentPersona(BasePersona):
                 if "skills" in os.path.join(config.skills_dir, s).split(os.sep)
             ]
             if display_skills:
-                skills_list = ", ".join(f"`{s}`" for s in display_skills)
+                skills_list = ", ".join(
+                    f"`{os.path.join(config.skills_dir, s)}`" for s in display_skills
+                )
                 self.send_message(f"**Using skills:** {skills_list}")
 
             skills_dir = config.skills_dir
@@ -568,18 +572,29 @@ class QuickAgentPersona(BasePersona):
 
             agent = self._build_agent(config, model, system_prompt)
 
-            # Run the deep agent and stream the response
+            # Build messages from conversation history + current query
+            messages = list(self._conversation_history)
+            messages.append({"role": "user", "content": user_message})
+
+            # Run the deep agent and stream the response, capturing the full reply
+            response_chunks: list[str] = []
+
             async def create_aiter():
                 async for token, metadata in agent.astream(
-                    {"messages": [{"role": "user", "content": user_message}]},
+                    {"messages": messages},
                     stream_mode="messages",
                 ):
                     node = metadata.get("langgraph_node", "")
                     if node == "model" and hasattr(token, "text") and token.text:
+                        response_chunks.append(token.text)
                         yield token.text
 
             response_aiter = create_aiter()
             await self.stream_message(response_aiter)
+
+            # Store the exchange in conversation history
+            self._conversation_history.append({"role": "user", "content": user_message})
+            self._conversation_history.append({"role": "assistant", "content": "".join(response_chunks)})
 
         except RuntimeError as e:
             self.send_message(str(e))
