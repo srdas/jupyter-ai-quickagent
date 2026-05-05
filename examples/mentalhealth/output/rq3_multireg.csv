@@ -1,0 +1,8 @@
+predictor,coefficient,std_error,t_statistic,p_value_approx,significant_alpha0.05
+intercept,6.097321,0.816893,7.464,0.0,Yes
+screen_time_before_sleep,-0.027573,0.117669,-0.2343,0.814731,No
+sleep_hours,-0.021118,0.058238,-0.3626,0.71689624,No
+age,-0.044057,0.041653,-1.0577,0.29019029,No
+gender,-0.041848,0.168098,-0.2489,0.80340071,No
+physical_activity,0.05763,0.144364,0.3992,0.6897464,No
+daily_social_media_hours,0.043288,0.041416,1.0452,0.29593998,No

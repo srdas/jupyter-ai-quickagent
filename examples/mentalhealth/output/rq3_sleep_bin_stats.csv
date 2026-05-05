@@ -1,0 +1,4 @@
+sleep_bin,stress_level_mean,stress_level_std,stress_level_count,anxiety_level_mean,anxiety_level_std,anxiety_level_count,depression_label_mean,depression_label_std,depression_label_count
+Adequate (6-8h),5.4572,2.8653,514,5.5467,2.7984,514,0.0,0.0,514
+Long (>8h),5.301,2.9758,206,5.7476,2.9573,206,0.0,0.0,206
+Short (<6h),5.4958,2.9164,480,5.6854,2.8845,480,0.0646,0.246,480

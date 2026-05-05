@@ -1,0 +1,10 @@
+platform_usage,sm_bin,stress_level,anxiety_level
+Both,Low (1-3h),5.5888,5.4019
+Both,Medium (3-5h),5.4138,5.7759
+Both,High (5-8h),5.619,5.3452
+Instagram,Low (1-3h),5.4786,5.5897
+Instagram,Medium (3-5h),5.3033,5.5164
+Instagram,High (5-8h),5.6512,5.8314
+TikTok,Low (1-3h),5.4831,5.3559
+TikTok,Medium (3-5h),4.6697,5.8624
+TikTok,High (5-8h),5.5497,5.9474

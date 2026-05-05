@@ -1,0 +1,11 @@
+outcome,path,coefficient,std_error,interpretation
+stress_level,c  (total effect X→Y),-0.023381,0.117543,Total effect of screen_time on stress_level
+stress_level,a  (X→M),0.019459,0.058407,Effect of screen_time on sleep_hours
+stress_level,b  (M→Y | X),-0.021715,0.058238,Effect of sleep_hours on stress_level controlling X
+stress_level,c' (direct X→Y | M),-0.022958,0.11759,Direct effect of screen_time on stress_level after controlling sleep
+stress_level,indirect (a*b),-0.000423,0.001701,Indirect effect via sleep_hours; Sobel Z=-0.248; No mediation (path a or b non-significant)
+anxiety_level,c  (total effect X→Y),-0.05392,0.115742,Total effect of screen_time on anxiety_level
+anxiety_level,a  (X→M),0.019459,0.058407,Effect of screen_time on sleep_hours
+anxiety_level,b  (M→Y | X),-0.023919,0.057345,Effect of sleep_hours on anxiety_level controlling X
+anxiety_level,c' (direct X→Y | M),-0.053455,0.115787,Direct effect of screen_time on anxiety_level after controlling sleep
+anxiety_level,indirect (a*b),-0.000465,0.001788,Indirect effect via sleep_hours; Sobel Z=-0.260; No mediation (path a or b non-significant)

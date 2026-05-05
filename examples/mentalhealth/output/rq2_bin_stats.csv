@@ -1,0 +1,4 @@
+sm_bin,stress_level,anxiety_level,addiction_level,sleep_hours,academic_performance
+Low (1-3h),5.5146,5.4503,5.7427,6.5383,3.0064
+Medium (3-5h),5.1412,5.7118,5.2939,6.3548,2.9438
+High (5-8h),5.6067,5.7104,5.6301,6.4542,3.0113

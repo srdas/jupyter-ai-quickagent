@@ -1,0 +1,5 @@
+pair,var1,var2,r,p_value,significant_alpha0.05
+Screen Time vs Sleep Hours,screen_time_before_sleep,sleep_hours,0.010235,0.72318877,No
+Sleep Hours vs Stress Level,sleep_hours,stress_level,-0.010979,0.70398508,No
+Sleep Hours vs Anxiety Level,sleep_hours,anxiety_level,-0.011879,0.68101706,No
+Sleep Hours vs Depression Label,sleep_hours,depression_label,-0.19063,0.0,Yes

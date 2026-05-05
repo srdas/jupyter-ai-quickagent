@@ -1,0 +1,13 @@
+feature,point_biserial_r,p_value
+sleep_hours,-0.1906,0.0
+daily_social_media_hours,0.1752,0.0
+stress_level,0.1705,0.0
+anxiety_level,0.1696,0.0
+gender,0.0198,0.492393
+physical_activity,-0.0176,0.542516
+screen_time_before_sleep,-0.0165,0.567948
+social_interaction_level,0.0142,0.622205
+addiction_level,-0.014,0.629213
+age,0.011,0.704157
+platform_usage,-0.0031,0.914396
+academic_performance,0.0014,0.960237

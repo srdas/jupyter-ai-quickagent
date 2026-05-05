@@ -135,7 +135,7 @@ After setting up agents, you will see them in the chat:
 
 ![List agents](static/list_agents.png) 
 
-### Example
+### Example 1
 
 A mathematician colleague, [Professor Dan Ostrov](https://webpages.scu.edu/ftp/dostrov/), wrote a short piece titled ``[What Are Good Math Questions?](https://github.com/srdas/skill-collection/blob/main/math_questions/Good%20Math%20Questions.pdf)'' and this is converted into a `SKILL.md` file stored anywhere on disk and referred to in the skill json file titled `mathq.json` shown later below. You can refer to the [skill file](https://github.com/srdas/skill-collection/blob/main/math_questions/skills/SKILL.md) to see the attributes of a good mathematical question that you want the `MathQ` agent to use.  
 
@@ -152,6 +152,19 @@ The agent will also tell you why this is a good question conforming to the attri
 ![Math why](static/mathq_why.png)
 
 Of course, whether this is a good math question eventually is a matter of taste and judgment, which AI agents are not presumed to have. Hopefully, the SKILL file provides enough guidance. 
+
+### Example 2
+
+This example sets up a QuickAgent called `Researcher` to generate an entire research paper in LaTeX. We undertake the following steps:
+
+1. Go to `kaggle` and download the dataset from the page on [Teen Mental Health](https://www.kaggle.com/datasets/algozee/teenager-menthal-healy). Drop it in its own folder, in this example titled `mentalhealth`. 
+2. Clone the repo: `https://github.com/srdas/skill-collection`. 
+
+```bash
+git clone https://github.com/srdas/skill-collection.git
+```
+3. In the chat panel, run `@QuickAgent create` and the follow the steps to complete the creation of the quick agent. It will instantiate the agent, and you will see that it is ready for use. To see this, see the [chat stream](/examples/mentalhealth/mentalhealth.chat). You can use the same choices in the provided chat. Of course, for the question on skills, point to the `<path-to-skill-collection>/researcher`. The QuickAgent will use all the skills in this folder, as well as any supporting code. 
+4. Next, enter `@QuickAgent use Researcher`. And then simply say `Analyze <path-to-mentalhealth-folder>`. The agent will use all the files in the folder to complete the task and prepare the paper. As you can see from the [chat stream](/examples/mentalhealth/mentalhealth.chat), the process only takes ~10 minutes and produces a summary in the chat, detailed [LaTeX file](/examples/mentalhealth/output/paper.tex), [PDF paper](/examples/mentalhealth/output/paper.pdf), and a notebook that reproduces the tables and figures. All generated code and supporting artifacts (tables and figures) are in the [output](/examples/mentalhealth/output/) folder. 
 
 ## How Authentication Works
 
