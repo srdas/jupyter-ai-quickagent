@@ -1,0 +1,56 @@
+{
+  "n_rows": 10300,
+  "churn_rate": 0.7620388349514563,
+  "ttest": {
+    "Age": {
+      "mean_churn": 33.34437507962798,
+      "mean_retain": 33.28804569563444,
+      "t": 0.2536199238208441,
+      "p": 0.7998022321978039
+    },
+    "Days_Since_Last_Login": {
+      "mean_churn": 97.07758950184737,
+      "mean_retain": 65.02325581395348,
+      "t": 28.732995584079134,
+      "p": 1.6221587335044638e-166
+    },
+    "Customer_Service_Calls": {
+      "mean_churn": 1.9129825455472034,
+      "mean_retain": 1.3851489188086494,
+      "t": 18.565310010566957,
+      "p": 2.329629174165243e-74
+    },
+    "Monthly_Spend": {
+      "mean_churn": 70.60425404510129,
+      "mean_retain": 90.55444308445533,
+      "t": -14.351751908553549,
+      "p": 1.567435839292139e-45
+    }
+  },
+  "rf_auc": 0.7153419040064655,
+  "lr_auc": 0.7203855306284329,
+  "top_rf_features": {
+    "Days_Since_Last_Login": 0.29006573076712167,
+    "Monthly_Spend": 0.21989701176494628,
+    "Age": 0.17009484803569191,
+    "Customer_Service_Calls": 0.0920359918215951,
+    "Gender_Male": 0.026909747246881516,
+    "Payment_Method_E-Wallet": 0.02125434926361811,
+    "Payment_Method_PayPal": 0.020965171035369507,
+    "Payment_Method_Crypto": 0.020530379221358842,
+    "Subscription_Plan_Pro": 0.020483161834763928,
+    "Region_West": 0.020447868100394742
+  },
+  "top_lr_features": {
+    "Days_Since_Last_Login": 0.7473223539625093,
+    "Customer_Service_Calls": 0.5038594794842457,
+    "Monthly_Spend": -0.3996691915220026,
+    "Region_South": 0.23086719288113067,
+    "Region_West": 0.11517845734893616,
+    "Region_North": 0.11502538254764434,
+    "Payment_Method_Crypto": 0.06853991493353186,
+    "Payment_Method_PayPal": 0.056686174855790694,
+    "Subscription_Plan_Pro": -0.035540032666109146,
+    "Payment_Method_E-Wallet": 0.02340181067421397
+  }
+}

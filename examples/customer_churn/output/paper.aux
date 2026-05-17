@@ -1,0 +1,37 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Data}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Data quality issues}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Cleaning protocol}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Effect of cleaning on the \texttt  {Monthly\_Spend} distribution. The raw histogram is compressed against the left axis because of the $99{,}999.99$ sentinel; the cleaned histogram reveals the true shape of the variable.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:quality}{{1}{2}{Effect of cleaning on the \texttt {Monthly\_Spend} distribution. The raw histogram is compressed against the left axis because of the $99{,}999.99$ sentinel; the cleaned histogram reveals the true shape of the variable}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Categorical predictors}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $\chi ^2$ tests of independence between categorical features and churn.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:chi2}{{1}{3}{$\chi ^2$ tests of independence between categorical features and churn}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Churn rate by categorical attribute. The red dashed line marks the overall churn rate of $0.762$. \texttt  {Subscription\_Plan} shows the largest spread across levels.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:cat}{{2}{3}{Churn rate by categorical attribute. The red dashed line marks the overall churn rate of $0.762$. \texttt {Subscription\_Plan} shows the largest spread across levels}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Numeric predictors}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Welch's $t$-tests comparing churners vs.\ retainers on numeric features.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ttest}{{2}{4}{Welch's $t$-tests comparing churners vs.\ retainers on numeric features}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distributions of the four numeric features by churn status. Churners show a higher median days-since-last-login and call count, and a lower monthly spend; age distributions are visually indistinguishable.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:numeric}{{3}{4}{Distributions of the four numeric features by churn status. Churners show a higher median days-since-last-login and call count, and a lower monthly spend; age distributions are visually indistinguishable}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Behavioral signature}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Churn rate by disengagement (x-axis) and support friction (y-axis). Darker cells indicate higher churn. The gradient runs from lower-left to upper-right.}}{5}{figure.4}\protected@file@percent }
+\newlabel{fig:heatmap}{{4}{5}{Churn rate by disengagement (x-axis) and support friction (y-axis). Darker cells indicate higher churn. The gradient runs from lower-left to upper-right}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Predictive models}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Random Forest feature importances. \texttt  {Days\_Since\_Last\_Login}, \texttt  {Monthly\_Spend}, and \texttt  {Age} dominate; one-hot encoded categorical features contribute little individually.}}{5}{figure.5}\protected@file@percent }
+\newlabel{fig:importance}{{5}{5}{Random Forest feature importances. \texttt {Days\_Since\_Last\_Login}, \texttt {Monthly\_Spend}, and \texttt {Age} dominate; one-hot encoded categorical features contribute little individually}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces ROC curves for Random Forest and Logistic Regression on the 25\% test split. Both achieve AUC $\approx 0.72$.}}{6}{figure.6}\protected@file@percent }
+\newlabel{fig:roc}{{6}{6}{ROC curves for Random Forest and Logistic Regression on the 25\% test split. Both achieve AUC $\approx 0.72$}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Engagement, not demographics, predicts churn.}{6}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The behavioral signature is coherent across methods.}{6}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data cleaning was outcome-determining.}{6}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\gdef \@abspage@last{7}
