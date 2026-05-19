@@ -22,3 +22,6 @@ tavily-python>=0.5.0        # Tavily search (requires TAVILY_API_KEY)
 wikipedia                   # Wikipedia tool
 arxiv                       # arXiv tool
 xmltodict                   # PubMed tool (used by langchain-community PubMedAPIWrapper)
+
+# Using Bedrock
+boto3
