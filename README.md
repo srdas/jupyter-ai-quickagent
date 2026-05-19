@@ -118,6 +118,35 @@ After installing, confirm the persona entry point is registered:
 
 You should see 'quickagent' in the list.
 
+## Installing only the CLI version 
+
+Use these steps if you do not want to install the full JupyterLab/Jupyter AI integration and only want to use the CLI interface. 
+
+Clone the repo and install requirements:
+```bash
+git clone https://github.com/srdas/jupyter-ai-quickagent.git
+cd jupyter-ai-quickagent
+uv pip install -r CLI_requirements.txt # you can drop `uv` if you like
+```
+
+Check that it is working: 
+```bash
+python -m jupyter_ai_quickagent
+```
+You should see the help menu.
+
+To run it, start by creating a Quick Agent:
+```bash
+python -m jupyter_ai_quickagent create
+```
+It will ask you a series of questions, and then create your agent based on your answers. Make sure to save your agent. 
+
+To run the agent proceed with:
+```bash
+python -m jupyter_ai_quickagent run <Agent-Name> <prompt>
+```
+Some examples are shown below in Quick Start.
+
 
 ## Quick Start
 
@@ -234,4 +263,52 @@ Each agent is saved as a JSON file in `~/.jupyter/jupyter-ai/quickagents/`. The 
 
 The `@QuickAgent list` command reads this directory and displays all available agents, as shown in the [image](#List_agents) above. To remove an agent, simply delete its JSON file from the `quickagents/` folder, or use the `@QuickAgents delete <name of agent>` prompt in the chat panel. 
 
+Some additional examples of agents are the Joker agent and the Researcher agent, shown below. First, `joker.json`:
 
+```json
+{
+  "name": "Joker",
+  "purpose": "Agent that writes a standup comdey joke in a few sentences from the provided file or URL",
+  "tools": [
+    "execute",
+    "read_file",
+    "write_file",
+    "edit_file",
+    "ls",
+    "glob",
+    "grep",
+    "python_repl",
+    "web_fetch",
+    "todo"
+  ],
+  "search_tools": [
+    "duckduckgo_search"
+  ],
+  "skills_dir": "/Users/sanjivda/CODE/skill-collection/comedy_writer",
+  "system_prompt": ""
+}
+```
+
+And then, `researcher.json`:
+
+```json
+{
+  "name": "Researcher",
+  "purpose": "Agent to read all files in a folder, formulate good research questions, perform empirical analysis, present results with visualizations, generate a reproducible Jupyter notebook, and produce a LaTeX paper",
+  "tools": [
+    "execute",
+    "read_file",
+    "write_file",
+    "edit_file",
+    "ls",
+    "glob",
+    "grep",
+    "python_repl",
+    "web_fetch",
+    "todo"
+  ],
+  "search_tools": [],
+  "skills_dir": "/Users/sanjivda/CODE/skill-collection/researcher",
+  "system_prompt": ""
+}
+```
