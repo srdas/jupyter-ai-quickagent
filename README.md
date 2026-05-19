@@ -135,6 +135,11 @@ python -m jupyter_ai_quickagent
 ```
 You should see the help menu.
 
+Connect the QuickAgent to a model, for example:
+```bash
+export QUICKAGENT_MODEL='us.anthropic.claude-opus-4-6-v1'
+```
+
 To run it, start by creating a Quick Agent:
 ```bash
 python -m jupyter_ai_quickagent create
