@@ -137,7 +137,7 @@ source .venv/bin/activate
 
 Install dependencies:
 ```bash
-uv pip install -r CLI_requirements.txt 
+uv pip install -r CLI-requirements.txt 
 # you can drop `uv` if you are not using it
 ```
 
