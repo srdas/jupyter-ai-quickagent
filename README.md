@@ -120,7 +120,7 @@ You should see 'quickagent' in the list.
 
 ## Installing only the CLI version 
 
-Use these steps if you do not want to install the full JupyterLab/Jupyter AI integration and only want to use the CLI interface. 
+Use these steps if you do not want to install the full JupyterLab/Jupyter AI integration and only want to use the CLI interface. You can do this in any `conda`, `mamba`, `micromamba`, `uv`, `python` virtual environment or just in your base environment. 
 
 Clone the repo and install requirements:
 ```bash
