@@ -120,13 +120,25 @@ You should see 'quickagent' in the list.
 
 ## Installing only the CLI version 
 
-Use these steps if you do not want to install the full JupyterLab/Jupyter AI integration and only want to use the CLI interface. You can do this in any `conda`, `mamba`, `micromamba`, `uv`, `python` virtual environment or just in your base environment. 
+Use these steps if you do not want to install the full JupyterLab/Jupyter AI integration and only want to use the CLI interface. You can do this in any `conda`, `mamba`, `micromamba`, `uv`, `python` virtual environment or just in your base environment. For example, to create a `uv` environment, the steps are shown below.
 
 Clone the repo and install requirements:
 ```bash
 git clone https://github.com/srdas/jupyter-ai-quickagent.git
 cd jupyter-ai-quickagent
-uv pip install -r CLI_requirements.txt # you can drop `uv` if you like
+```
+
+Create the virtual environment:
+```bash
+uv venv --python 3.12
+source .venv/bin/activate
+ # On Windows: .venv\Scripts\activate
+```
+
+Install dependencies:
+```bash
+uv pip install -r CLI_requirements.txt 
+# you can drop `uv` if you are not using it
 ```
 
 Check that it is working: 
