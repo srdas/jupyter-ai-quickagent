@@ -195,7 +195,7 @@ Some examples are shown below in Quick Start.
 ## Quick Start
 
 1. Ensure a chat model is configured in **Settings > AI Settings** (the same one Jupyternaut uses).
-2. Start JupyterLab: `just start`
+2. Start JupyterLab: `just start` (developer version) or `jupyter lab` (user version)
 3. Open the Jupyter AI chat panel from the left sidebar.
 4. Send `@QuickAgent create` to build your first agent.
 5. Follow the five interactive prompts (name, purpose, tools, search tools, skill files).
