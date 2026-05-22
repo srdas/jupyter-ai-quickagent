@@ -23,7 +23,34 @@ This is an early attempt at building a Persona that can create a collection of p
 - **Jupyternaut** (`jupyter_ai_jupyternaut`) must be installed and a chat model must be configured in **Settings > AI Settings**. QuickAgent reuses this model — no environment-variable API keys are needed for the LLM itself.
 - **Python >= 3.11**
 
+## Quick Installation with Jupyter AI
+
+Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/) first. 
+
+Then, you can just run the install script. This will install all the necessary dependencies and set up the environment for you. To do this download the [`install_nondev.sh`](install_nondev.sh) script and run it in your terminal:
+
+```bash
+chmod a+x install_nondev.sh
+./install_nondev.sh 
+```
+This will install everything and also start Jupyter Lab. For later sessions, you will need to start as follows:
+
+```bash
+cd jupyter-ai-quickagents
+source .venv/bin/activate
+jupyter lab
+```
+
+If you are going to use any of the CLI coding agents (e.g., Claude Code, Gemini CLI, Codex CLI, Kiro CLI, OpenCode CLI, etc.) with Jupyter AI then also download and run the [`install_cli.sh`](install_cli.sh) script. 
+
+```bash
+chmod a+x install_cli.sh
+./install_cli.sh
+```
+
 ## Developer Installation
+
+Install [`just`](https://just.systems/) and [`uv`](https://docs.astral.sh/uv/getting-started/installation/) first. 
 
 <!--
 ### Within the devrepo
@@ -45,7 +72,7 @@ pip install jupyter_ai_quickagent
 ### Install Everything
 -->
 
-It is easiest to install this package with Jupyter AI one-shot. You will be prompted to install the quickagent repo. However, if you do not want the developer install, i.e., just the user install, then go down to the [Local non-dev install](#local-non-dev-install) section. 
+For developers, it is easiest to install this package with Jupyter AI one-shot. You will be prompted to install the quickagent repo. However, if you do not want the developer install, i.e., just the user install, then just use the script above. 
 
 In order to install [jupyter-ai](https://github.com/jupyterlab/jupyter-ai) using all the submodules in [jupyter-ai-contrib](https://github.com/jupyter-ai-contrib) you can use the installer provided in this repository, see [install.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install.sh). To use it: 
 
@@ -54,14 +81,14 @@ chmod a+x install.sh
 ./install.sh
 ```
 
-If you only want to install the various CLIs (e.g., Claude Code, Gemini CLI, Codex CLI, Kiro CLI, OpenCode CLI, etc.) from various providers, you can run the partial installer [install_cli.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install_cli.sh). 
+<!-- If you only want to install the various CLIs (e.g., Claude Code, Gemini CLI, Codex CLI, Kiro CLI, OpenCode CLI, etc.) from various providers, you can run the partial installer [install_cli.sh](https://github.com/srdas/jupyter-ai-quickagent/blob/main/install_cli.sh). 
 
 ```
 chmod a+x install_cli.sh
 ./install_cli.sh
-```
+``` -->
 
-## Local non-dev install
+<!-- ## Local non-dev install
 
 First, install `jupyter-ai` using the [Getting Started docs](https://jupyter-ai.readthedocs.io/en/latest/getting-started.html), and also install the optional [magic commands](https://jupyter-ai.readthedocs.io/en/latest/users/magic_commands/index.html) and [Jupyternaut](https://jupyter-ai.readthedocs.io/en/latest/users/jupyternaut/index.html), which is needed for Quick agents. 
 
@@ -116,7 +143,7 @@ After installing, confirm the persona entry point is registered:
 ~/Test/v3/.venv/bin/python -c "from importlib.metadata import entry_points; eps = entry_points(group='jupyter_ai.personas'); print([e.name for e in eps])"                                 
 ```
 
-You should see 'quickagent' in the list.
+You should see 'quickagent' in the list. -->
 
 ## Installing only the CLI version 
 
