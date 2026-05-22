@@ -5,8 +5,8 @@ linkcolor: blue
 geometry:
   - top=1in
   - bottom=1in
-  - left=0.75in
-  - right=0.75in
+  - left=1in
+  - right=1in
 ---
 
 # Beyond Generic AI: Build Custom Agents in Jupyter AI with QuickAgent
