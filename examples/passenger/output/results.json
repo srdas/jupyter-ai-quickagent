@@ -1,0 +1,560 @@
+{
+  "rq1": {
+    "auc_logit": 0.87870016024714,
+    "auc_rf": 0.8815852278564202,
+    "top10_corr": {
+      "boarding_lounge_comfort": 0.549,
+      "parking": 0.491,
+      "baggage_claim_process": 0.485,
+      "overall_airport_cleanliness": 0.472,
+      "restrooms": 0.457,
+      "disembarkation_method_rating": 0.45,
+      "location_and_movement": 0.449,
+      "power_outlet_availability": 0.435,
+      "food_beverage_outlets": 0.431,
+      "retail_outlets": 0.427
+    },
+    "top10_logit": {
+      "location_and_movement": 0.876,
+      "boarding_lounge_comfort": 0.741,
+      "baggage_claim_process": 0.564,
+      "food_beverage_outlets": 0.397,
+      "overall_airport_cleanliness": 0.333,
+      "power_outlet_availability": 0.327,
+      "restrooms": 0.266,
+      "signage": 0.225,
+      "checkin_process": 0.195,
+      "parking": 0.182
+    },
+    "top10_rf": {
+      "location_and_movement": 0.1668,
+      "boarding_lounge_comfort": 0.0958,
+      "overall_airport_cleanliness": 0.0695,
+      "power_outlet_availability": 0.0513,
+      "baggage_claim_process": 0.0494,
+      "signage": 0.0395,
+      "restrooms": 0.0374,
+      "arrival_lead_time": 0.0345,
+      "food_beverage_outlets": 0.0331,
+      "curbside_dropoff_ease": 0.0279
+    },
+    "coverage_top": {
+      "location_and_movement": 0.996,
+      "boarding_lounge_comfort": 0.578,
+      "overall_airport_cleanliness": 0.577,
+      "power_outlet_availability": 0.419,
+      "restrooms": 0.394,
+      "arrival_lead_time": 0.388,
+      "security_screening_process": 0.387,
+      "curbside_dropoff_ease": 0.364,
+      "ticket_purchase_process": 0.297,
+      "baggage_claim_process": 0.294,
+      "transport_options_to_airport": 0.293,
+      "food_beverage_outlets": 0.267,
+      "signage": 0.252,
+      "thermal_comfort": 0.236,
+      "seat_availability": 0.236
+    },
+    "coverage_bot": {
+      "service_window_quantity": 0.012,
+      "immigration_queue_organization": 0.011,
+      "immigration_staff_service": 0.011,
+      "parking_terminal_access_ease": 0.009,
+      "parking_space_availability_ease": 0.009,
+      "parking_facility_quality": 0.009,
+      "parking_value_for_money": 0.008,
+      "reserved_seat_availability": 0.006,
+      "self_service_kiosk_quantity": 0.006,
+      "disembarkation_method_rating": 0.006,
+      "terminal_accessibility": 0.005,
+      "customs_queue_wait_time": 0.004,
+      "customs_queue_organization": 0.004,
+      "customs_staff_service": 0.004,
+      "airline_service": 0.001
+    }
+  },
+  "rq2": {
+    "segments": {
+      "process=Boarding": {
+        "n": 33283,
+        "like_rate": 0.48922873539043954,
+        "auc_logit": 0.9052744086580838,
+        "top10": {
+          "boarding_lounge_comfort": 0.1415,
+          "overall_airport_cleanliness": 0.095,
+          "location_and_movement": 0.0744,
+          "power_outlet_availability": 0.0679,
+          "restrooms": 0.0473,
+          "arrival_lead_time": 0.0453,
+          "food_beverage_outlets": 0.0445,
+          "seat_availability": 0.0348,
+          "curbside_dropoff_ease": 0.0336,
+          "thermal_comfort": 0.0301
+        }
+      },
+      "process=Disembarkation": {
+        "n": 24231,
+        "like_rate": 0.5147950971895505,
+        "auc_logit": 0.8335224045274106,
+        "top10": {
+          "location_and_movement": 0.3997,
+          "baggage_claim_process": 0.2162,
+          "signage": 0.1045,
+          "baggage_carousel_identification_ease": 0.0777,
+          "baggage_claim_time": 0.0768,
+          "baggage_integrity": 0.0589,
+          "immigration_control": 0.0166,
+          "customs_control": 0.0111,
+          "immigration_queue_wait_time": 0.0062,
+          "immigration_queue_organization": 0.0061
+        }
+      },
+      "flight_type=Domestic": {
+        "n": 52008,
+        "like_rate": 0.501134440855253,
+        "auc_logit": 0.8778684343877458,
+        "top10": {
+          "location_and_movement": 0.1674,
+          "boarding_lounge_comfort": 0.1027,
+          "overall_airport_cleanliness": 0.0726,
+          "power_outlet_availability": 0.0531,
+          "baggage_claim_process": 0.0485,
+          "signage": 0.0416,
+          "arrival_lead_time": 0.0366,
+          "restrooms": 0.0355,
+          "food_beverage_outlets": 0.0349,
+          "curbside_dropoff_ease": 0.0303
+        }
+      },
+      "flight_type=International": {
+        "n": 5506,
+        "like_rate": 0.48928441699963676,
+        "auc_logit": 0.8913241681475321,
+        "top10": {
+          "location_and_movement": 0.1291,
+          "boarding_lounge_comfort": 0.0656,
+          "baggage_claim_process": 0.053,
+          "immigration_control": 0.0516,
+          "overall_airport_cleanliness": 0.0452,
+          "signage": 0.0396,
+          "power_outlet_availability": 0.0377,
+          "food_beverage_outlets": 0.0376,
+          "thermal_comfort": 0.0279,
+          "restrooms": 0.0263
+        }
+      }
+    },
+    "shared_top": [
+      "location_and_movement",
+      "boarding_lounge_comfort",
+      "overall_airport_cleanliness",
+      "power_outlet_availability",
+      "baggage_claim_process",
+      "signage",
+      "restrooms",
+      "arrival_lead_time",
+      "food_beverage_outlets",
+      "curbside_dropoff_ease"
+    ],
+    "own_top": {
+      "process=Boarding": [
+        "boarding_lounge_comfort",
+        "overall_airport_cleanliness",
+        "location_and_movement",
+        "power_outlet_availability",
+        "restrooms",
+        "arrival_lead_time",
+        "food_beverage_outlets",
+        "seat_availability",
+        "curbside_dropoff_ease",
+        "thermal_comfort"
+      ],
+      "process=Disembarkation": [
+        "location_and_movement",
+        "baggage_claim_process",
+        "signage",
+        "baggage_carousel_identification_ease",
+        "baggage_claim_time",
+        "baggage_integrity",
+        "immigration_control",
+        "customs_control",
+        "immigration_queue_wait_time",
+        "immigration_queue_organization"
+      ],
+      "flight_type=Domestic": [
+        "location_and_movement",
+        "boarding_lounge_comfort",
+        "overall_airport_cleanliness",
+        "power_outlet_availability",
+        "baggage_claim_process",
+        "signage",
+        "arrival_lead_time",
+        "restrooms",
+        "food_beverage_outlets",
+        "curbside_dropoff_ease"
+      ],
+      "flight_type=International": [
+        "location_and_movement",
+        "boarding_lounge_comfort",
+        "baggage_claim_process",
+        "immigration_control",
+        "overall_airport_cleanliness",
+        "signage",
+        "power_outlet_availability",
+        "food_beverage_outlets",
+        "thermal_comfort",
+        "restrooms"
+      ]
+    }
+  },
+  "rq3": {
+    "raw": {
+      "nationality": {
+        "like_rate": {
+          "Foreign": 0.5894,
+          "Brazilian": 0.4974
+        },
+        "n": {
+          "Foreign": 1644,
+          "Brazilian": 55870
+        }
+      },
+      "gender": {
+        "like_rate": {
+          "Male": 0.5006,
+          "Female": 0.4994
+        },
+        "n": {
+          "Male": 28885,
+          "Female": 28629
+        }
+      },
+      "age_group": {
+        "like_rate": {
+          "18 to 25 years": 0.599,
+          "Over 65 years": 0.5062,
+          "26 to 35 years": 0.4934,
+          "56 to 65 years": 0.4685,
+          "46 to 55 years": 0.4663,
+          "36 to 45 years": 0.4523
+        },
+        "n": {
+          "18 to 25 years": 4237,
+          "Over 65 years": 721,
+          "26 to 35 years": 11249,
+          "56 to 65 years": 2175,
+          "46 to 55 years": 5093,
+          "36 to 45 years": 9808
+        }
+      },
+      "education": {
+        "like_rate": {
+          "No formal literacy": 0.7037,
+          "Elementary education": 0.6711,
+          "High school": 0.5807,
+          "Higher education": 0.4716,
+          "Graduate specialization": 0.4239,
+          "Master's degree": 0.3652,
+          "Doctorate": 0.3563
+        },
+        "n": {
+          "No formal literacy": 27,
+          "Elementary education": 1131,
+          "High school": 7940,
+          "Higher education": 16534,
+          "Graduate specialization": 5253,
+          "Master's degree": 1643,
+          "Doctorate": 755
+        }
+      },
+      "household_income": {
+        "like_rate": {
+          "Up to 1 minimum wage": 0.628,
+          "Between 1 and 2 minimum wages": 0.62,
+          "Between 2 and 4 minimum wages": 0.5795,
+          "Other": 0.5345,
+          "Between 4 and 10 minimum wages": 0.5096,
+          "Between 10 and 20 minimum wages": 0.4466,
+          "Prefer not to say": 0.4196,
+          "More than 20 minimum wages": 0.3678
+        },
+        "n": {
+          "Up to 1 minimum wage": 922,
+          "Between 1 and 2 minimum wages": 2158,
+          "Between 2 and 4 minimum wages": 5246,
+          "Other": 232,
+          "Between 4 and 10 minimum wages": 9362,
+          "Between 10 and 20 minimum wages": 6231,
+          "Prefer not to say": 5584,
+          "More than 20 minimum wages": 3548
+        }
+      },
+      "traveling_alone": {
+        "like_rate": {
+          "No": 0.5163,
+          "Yes": 0.4752
+        },
+        "n": {
+          "No": 11371,
+          "Yes": 21912
+        }
+      },
+      "number_of_companions": {
+        "like_rate": {
+          "2 people": 0.5184,
+          "1 person": 0.5169,
+          "3 people": 0.5132,
+          "4 or more people": 0.512
+        },
+        "n": {
+          "2 people": 2062,
+          "1 person": 7030,
+          "3 people": 1025,
+          "4 or more people": 1254
+        }
+      },
+      "trip_purpose": {
+        "like_rate": {
+          "Sports": 0.6947,
+          "Religious/mission": 0.625,
+          "Legal/embassy": 0.5909,
+          "Relocation/return home": 0.5567,
+          "Family": 0.5558,
+          "Study/conference": 0.5523,
+          "Leisure": 0.5175,
+          "Exam/selection process": 0.5,
+          "Other": 0.4915,
+          "Leisure and business": 0.4725,
+          "Business": 0.4375,
+          "Health": 0.426,
+          "Funeral": 0.4167,
+          "Unknown/no answer": 0.3333,
+          "Shopping": 0.0,
+          "Wedding": 0.0
+        },
+        "n": {
+          "Sports": 95,
+          "Religious/mission": 8,
+          "Legal/embassy": 66,
+          "Relocation/return home": 203,
+          "Family": 2017,
+          "Study/conference": 717,
+          "Leisure": 15680,
+          "Exam/selection process": 2,
+          "Other": 1298,
+          "Leisure and business": 726,
+          "Business": 12037,
+          "Health": 338,
+          "Funeral": 72,
+          "Unknown/no answer": 21,
+          "Shopping": 2,
+          "Wedding": 1
+        }
+      },
+      "trips_last_12_months": {
+        "like_rate": {
+          "1 - first trip": 0.614,
+          "2 to 3": 0.5458,
+          "4 to 5": 0.4868,
+          "6 to 10": 0.4511,
+          "More than 11": 0.3823,
+          "Unknown/no answer": 0.344
+        },
+        "n": {
+          "1 - first trip": 10706,
+          "2 to 3": 15380,
+          "4 to 5": 10076,
+          "6 to 10": 10543,
+          "More than 11": 10684,
+          "Unknown/no answer": 125
+        }
+      },
+      "used_airport_before_last_12_months": {
+        "like_rate": {
+          "No": 0.527,
+          "Not applicable": 0.5148,
+          "Yes": 0.4385
+        },
+        "n": {
+          "No": 11584,
+          "Not applicable": 24231,
+          "Yes": 18413
+        }
+      }
+    },
+    "residual": {
+      "nationality": {
+        "mean_resid": {
+          "Foreign": 0.0306,
+          "Brazilian": -0.0009
+        },
+        "n": {
+          "Foreign": 1644,
+          "Brazilian": 55870
+        }
+      },
+      "gender": {
+        "mean_resid": {
+          "Male": 0.0005,
+          "Female": -0.0005
+        },
+        "n": {
+          "Male": 28885,
+          "Female": 28629
+        }
+      },
+      "age_group": {
+        "mean_resid": {
+          "18 to 25 years": 0.0154,
+          "36 to 45 years": 0.0136,
+          "46 to 55 years": 0.0135,
+          "26 to 35 years": 0.007,
+          "56 to 65 years": 0.0065,
+          "Over 65 years": -0.0081
+        },
+        "n": {
+          "18 to 25 years": 4237,
+          "36 to 45 years": 9808,
+          "46 to 55 years": 5093,
+          "26 to 35 years": 11249,
+          "56 to 65 years": 2175,
+          "Over 65 years": 721
+        }
+      },
+      "education": {
+        "mean_resid": {
+          "No formal literacy": 0.0887,
+          "Elementary education": 0.0545,
+          "High school": 0.0155,
+          "Higher education": 0.0086,
+          "Graduate specialization": 0.0083,
+          "Doctorate": -0.0055,
+          "Master's degree": -0.0083
+        },
+        "n": {
+          "No formal literacy": 27,
+          "Elementary education": 1131,
+          "High school": 7940,
+          "Higher education": 16534,
+          "Graduate specialization": 5253,
+          "Doctorate": 755,
+          "Master's degree": 1643
+        }
+      },
+      "household_income": {
+        "mean_resid": {
+          "Other": 0.0752,
+          "Between 1 and 2 minimum wages": 0.0362,
+          "Up to 1 minimum wage": 0.0343,
+          "Between 2 and 4 minimum wages": 0.0308,
+          "Between 4 and 10 minimum wages": 0.0151,
+          "Between 10 and 20 minimum wages": 0.0146,
+          "More than 20 minimum wages": -0.011,
+          "Prefer not to say": -0.0228
+        },
+        "n": {
+          "Other": 232,
+          "Between 1 and 2 minimum wages": 2158,
+          "Up to 1 minimum wage": 922,
+          "Between 2 and 4 minimum wages": 5246,
+          "Between 4 and 10 minimum wages": 9362,
+          "Between 10 and 20 minimum wages": 6231,
+          "More than 20 minimum wages": 3548,
+          "Prefer not to say": 5584
+        }
+      },
+      "traveling_alone": {
+        "mean_resid": {
+          "No": 0.0116,
+          "Yes": 0.0101
+        },
+        "n": {
+          "No": 11371,
+          "Yes": 21912
+        }
+      },
+      "number_of_companions": {
+        "mean_resid": {
+          "2 people": 0.0298,
+          "4 or more people": 0.0231,
+          "3 people": 0.0115,
+          "1 person": 0.0043
+        },
+        "n": {
+          "2 people": 2062,
+          "4 or more people": 1254,
+          "3 people": 1025,
+          "1 person": 7030
+        }
+      },
+      "trip_purpose": {
+        "mean_resid": {
+          "Religious/mission": 0.3633,
+          "Exam/selection process": 0.2192,
+          "Legal/embassy": 0.1244,
+          "Sports": 0.0792,
+          "Study/conference": 0.0603,
+          "Relocation/return home": 0.0557,
+          "Family": 0.0404,
+          "Leisure and business": 0.0169,
+          "Health": 0.0158,
+          "Funeral": 0.0116,
+          "Leisure": 0.009,
+          "Business": 0.0065,
+          "Unknown/no answer": -0.0211,
+          "Other": -0.0287,
+          "Wedding": -0.1159,
+          "Shopping": -0.41
+        },
+        "n": {
+          "Religious/mission": 8,
+          "Exam/selection process": 2,
+          "Legal/embassy": 66,
+          "Sports": 95,
+          "Study/conference": 717,
+          "Relocation/return home": 203,
+          "Family": 2017,
+          "Leisure and business": 726,
+          "Health": 338,
+          "Funeral": 72,
+          "Leisure": 15680,
+          "Business": 12037,
+          "Unknown/no answer": 21,
+          "Other": 1298,
+          "Wedding": 1,
+          "Shopping": 2
+        }
+      },
+      "trips_last_12_months": {
+        "mean_resid": {
+          "1 - first trip": 0.037,
+          "2 to 3": 0.0163,
+          "4 to 5": 0.0012,
+          "Unknown/no answer": -0.0222,
+          "6 to 10": -0.0223,
+          "More than 11": -0.0394
+        },
+        "n": {
+          "1 - first trip": 10706,
+          "2 to 3": 15380,
+          "4 to 5": 10076,
+          "Unknown/no answer": 125,
+          "6 to 10": 10543,
+          "More than 11": 10684
+        }
+      },
+      "used_airport_before_last_12_months": {
+        "mean_resid": {
+          "Yes": 0.007,
+          "No": 0.0016,
+          "Not applicable": -0.0147
+        },
+        "n": {
+          "Yes": 18413,
+          "No": 11584,
+          "Not applicable": 24231
+        }
+      }
+    }
+  }
+}
