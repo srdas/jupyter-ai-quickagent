@@ -1,16 +1,16 @@
 """Claude Code CLI integration for the QuickAgent persona.
 
-When a user message contains ``@Claude``, QuickAgent delegates the prompt to
+When a user message contains ``!Claude``, QuickAgent delegates the prompt to
 the locally-installed ``claude`` CLI (Claude Code) instead of the LiteLLM
 model that is configured in Jupyter AI settings.
 
 Public API
 ----------
 has_claude_mention(body)
-    Return True if the message body contains an ``@Claude`` / ``@claude`` mention.
+    Return True if the message body contains a ``!Claude`` / ``!claude`` token.
 
 strip_claude_mention(body)
-    Remove the first ``@Claude`` mention and return the cleaned text.
+    Remove the first ``!Claude`` token and return the cleaned text.
 
 find_claude_cli()
     Locate the ``claude`` binary on PATH, returning its path or None.
@@ -29,26 +29,26 @@ from typing import AsyncGenerator, Optional
 
 
 # ---------------------------------------------------------------------------
-# @Claude mention helpers
+# !Claude trigger helpers
 # ---------------------------------------------------------------------------
 
-# Matches @Claude or @claude followed by a word boundary, then optional space.
-_CLAUDE_MENTION_RE = re.compile(r"@[Cc]laude\b\s*")
+# Matches !Claude or !claude followed by a word boundary, then optional space.
+_CLAUDE_MENTION_RE = re.compile(r"![Cc]laude\b\s*")
 
 
 def has_claude_mention(body: str) -> bool:
-    """Return ``True`` if *body* contains an ``@Claude`` or ``@claude`` mention."""
+    """Return ``True`` if *body* contains a ``!Claude`` or ``!claude`` token."""
     return bool(_CLAUDE_MENTION_RE.search(body))
 
 
 def strip_claude_mention(body: str) -> str:
-    """Remove the first ``@Claude`` mention from *body* and return the result.
+    """Remove the first ``!Claude`` token from *body* and return the result.
 
     Examples
     --------
-    >>> strip_claude_mention("@Claude explain decorators")
+    >>> strip_claude_mention("!Claude explain decorators")
     'explain decorators'
-    >>> strip_claude_mention("@QuickAgent @Claude fix this bug")
+    >>> strip_claude_mention("@QuickAgent !Claude fix this bug")
     '@QuickAgent fix this bug'
     """
     return _CLAUDE_MENTION_RE.sub("", body, count=1).strip()

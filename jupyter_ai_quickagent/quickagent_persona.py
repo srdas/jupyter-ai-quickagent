@@ -84,7 +84,7 @@ class QuickAgentPersona(BasePersona):
             await self._handle_setup_step(body)
             return
 
-        # @Claude mention → delegate to the Claude Code CLI instead of LiteLLM
+        # !Claude token → delegate to the Claude Code CLI instead of LiteLLM
         if has_claude_mention(body):
             claude_prompt = strip_claude_mention(body)
             await self._run_claude_cli(claude_prompt, message)
@@ -167,11 +167,11 @@ class QuickAgentPersona(BasePersona):
             "- `info <name>` — Show agent configuration details\n"
             "- `delete <name>` — Delete a saved agent\n"
             "- `help` — Show this help message\n\n"
-            "**Claude Code CLI** (add `@Claude` anywhere in your message):\n"
+            "**Claude Code CLI** (add `!Claude` anywhere in your message):\n"
             "- Routes the prompt directly to the local `claude` CLI instead of\n"
             "  the LiteLLM model configured in AI Settings.\n"
             f"- Status: {claude_status}\n"
-            "- Example: `@QuickAgent @Claude refactor this function`\n"
+            "- Example: `@QuickAgent !Claude refactor this function`\n"
             f"{agent_list}\n"
             "To get started, send `@QuickAgent create` to build your first agent!"
         )
@@ -503,7 +503,7 @@ class QuickAgentPersona(BasePersona):
     async def _run_claude_cli(self, prompt: str, message: Optional[Message]) -> None:
         """Delegate *prompt* to the Claude Code CLI and stream the response.
 
-        Called when the user's message contains an ``@Claude`` mention.  The
+        Called when the user's message contains a ``!Claude`` token.  The
         ``claude -p <prompt>`` subprocess is run with the JupyterLab root as the
         working directory, and its stdout is streamed back through the chat.
         """
@@ -511,8 +511,8 @@ class QuickAgentPersona(BasePersona):
 
         if not prompt:
             self.send_message(
-                "Please include a prompt after `@Claude`, for example:\n\n"
-                "`@QuickAgent @Claude what does this function do?`"
+                "Please include a prompt after `!Claude`, for example:\n\n"
+                "`@QuickAgent !Claude what does this function do?`"
             )
             return
 
