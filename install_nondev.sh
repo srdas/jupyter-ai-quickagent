@@ -5,6 +5,8 @@ cd jupyter-ai-quickagent
 uv venv --python 3.12
 source .venv/bin/activate
 
+sleep 5
+
 uv pip install jupyter-ai
 
 npm install -g @agentclientprotocol/claude-agent-acp
