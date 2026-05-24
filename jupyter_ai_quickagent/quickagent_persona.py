@@ -556,7 +556,13 @@ class QuickAgentPersona(BasePersona):
 
         try:
             cwd = self._get_jupyter_root_dir()
-            full_prompt = self._build_claude_cli_prompt(prompt, message)
+            full_prompt, skill_paths = self._build_claude_cli_prompt(prompt, message)
+
+            # Report which skill files were loaded into the context.
+            if skill_paths:
+                skills_list = "\n".join(f"- `{p}`" for p in skill_paths)
+                self.send_message(f"**Using skills:**\n{skills_list}")
+
             response_gen = stream_claude_response(full_prompt, cwd=cwd)
             await self.stream_message(response_gen)
         except RuntimeError as e:
@@ -577,8 +583,14 @@ class QuickAgentPersona(BasePersona):
                 )
             )
 
-    def _build_claude_cli_prompt(self, user_message: str, message: Optional[Message]) -> str:
+    def _build_claude_cli_prompt(
+        self, user_message: str, message: Optional[Message]
+    ) -> tuple[str, list[str]]:
         """Build the full prompt string sent to the Claude CLI.
+
+        Returns a ``(prompt, skill_paths)`` tuple where *skill_paths* is the
+        list of absolute paths of every ``.md`` skill file that was loaded
+        (empty when no skills directory is configured or no agent is active).
 
         When an agent is active its entire configuration is embedded as a
         preamble so Claude Code has the same context that the LangChain deep
@@ -608,17 +620,23 @@ class QuickAgentPersona(BasePersona):
         # ---- no active agent: simple pass-through ----
         if not self._active_agent_name:
             parts = [p for p in (attachment_ctx, user_message) if p]
-            return "\n\n".join(parts)
+            return "\n\n".join(parts), []
 
         config = load_agent(self._active_agent_name)
         if not config:
             parts = [p for p in (attachment_ctx, user_message) if p]
-            return "\n\n".join(parts)
+            return "\n\n".join(parts), []
 
-        # ---- load skills ----
+        # ---- load skills, collecting absolute paths for display ----
         skill_content: str = ""
+        skill_rel_paths: list[str] = []
         if config.skills_dir:
-            skill_content, _ = self._load_skill_content(config.skills_dir)
+            skill_content, skill_rel_paths = self._load_skill_content(config.skills_dir)
+
+        # Absolute paths shown to the user
+        skill_abs_paths: list[str] = [
+            os.path.join(config.skills_dir, rel) for rel in skill_rel_paths
+        ]
 
         skills_dir = config.skills_dir
         skills_dir_parent = self._find_project_root(skills_dir) if skills_dir else ""
@@ -662,7 +680,7 @@ class QuickAgentPersona(BasePersona):
         # ---- user request ----
         sections.append("---\n\nUser request:\n" + user_message)
 
-        return "\n\n".join(sections)
+        return "\n\n".join(sections), skill_abs_paths
 
     # ---- LLM from jupyternaut config ----
 

@@ -73,6 +73,7 @@ def find_claude_cli() -> Optional[str]:
 async def stream_claude_response(
     prompt: str,
     cwd: Optional[str] = None,
+    skip_permissions: bool = True,
 ) -> AsyncGenerator[str, None]:
     """Invoke ``claude -p <prompt>`` and yield decoded stdout chunks.
 
@@ -91,6 +92,11 @@ async def stream_claude_response(
     cwd:
         Working directory for the subprocess.  Defaults to the user's home
         directory so that Claude Code can find its ``~/.claude`` config.
+    skip_permissions:
+        When ``True`` (the default) ``--dangerously-skip-permissions`` is
+        passed to the CLI so that Claude Code uses all configured tools
+        without interrupting to ask for approval.  Set to ``False`` to
+        restore interactive permission prompts.
 
     Yields
     ------
@@ -118,10 +124,12 @@ async def stream_claude_response(
 
     effective_cwd = cwd or os.path.expanduser("~")
 
+    cmd = [claude_path, "-p", prompt]
+    if skip_permissions:
+        cmd.append("--dangerously-skip-permissions")
+
     proc = await asyncio.create_subprocess_exec(
-        claude_path,
-        "-p",
-        prompt,
+        *cmd,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
         cwd=effective_cwd,
