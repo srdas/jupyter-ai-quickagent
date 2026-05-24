@@ -18,6 +18,7 @@ from .agent_store import (
     load_agent,
     save_agent,
 )
+from .claude_cli import find_claude_cli, has_claude_mention, strip_claude_mention
 from .prompt_template import QUICKAGENT_SYSTEM_PROMPT_TEMPLATE
 
 QUICKAGENT_AVATAR_PATH = str(
@@ -83,6 +84,12 @@ class QuickAgentPersona(BasePersona):
             await self._handle_setup_step(body)
             return
 
+        # @Claude mention → delegate to the Claude Code CLI instead of LiteLLM
+        if has_claude_mention(body):
+            claude_prompt = strip_claude_mention(body)
+            await self._run_claude_cli(claude_prompt, message)
+            return
+
         # Handle commands (e.g. "create", "list", "use MyAgent")
         first_word = body.split()[0].lower() if body else ""
         if first_word in ("create", "list", "use", "delete", "info", "run", "help"):
@@ -144,6 +151,12 @@ class QuickAgentPersona(BasePersona):
             for a in agents:
                 agent_list += f"- `{a.name}` — {a.purpose}\n"
 
+        claude_status = (
+            f"`claude` found at `{find_claude_cli()}`"
+            if find_claude_cli()
+            else "`claude` **not found** — install with `npm install -g @anthropic-ai/claude-code`"
+        )
+
         self.send_message(
             "**QuickAgent** — Build and run autonomous agents in JupyterLab\n\n"
             "**Commands** (send as a message to @QuickAgent):\n"
@@ -153,7 +166,12 @@ class QuickAgentPersona(BasePersona):
             "- `run <name>` — Run a saved agent\n"
             "- `info <name>` — Show agent configuration details\n"
             "- `delete <name>` — Delete a saved agent\n"
-            "- `help` — Show this help message\n"
+            "- `help` — Show this help message\n\n"
+            "**Claude Code CLI** (add `@Claude` anywhere in your message):\n"
+            "- Routes the prompt directly to the local `claude` CLI instead of\n"
+            "  the LiteLLM model configured in AI Settings.\n"
+            f"- Status: {claude_status}\n"
+            "- Example: `@QuickAgent @Claude refactor this function`\n"
             f"{agent_list}\n"
             "To get started, send `@QuickAgent create` to build your first agent!"
         )
@@ -463,6 +481,111 @@ class QuickAgentPersona(BasePersona):
                     except OSError:
                         pass
         return "\n\n".join(sections), loaded_paths
+
+    # ---- Claude Code CLI delegation ----
+
+    def _get_jupyter_root_dir(self) -> str:
+        """Return the JupyterLab server root directory.
+
+        This is passed as the working directory to the ``claude`` subprocess so
+        that Claude Code picks up the correct project config (``~/.claude`` or a
+        ``CLAUDE.md`` in the project root).  Falls back to the user's home
+        directory if the root cannot be determined.
+        """
+        try:
+            root_dir = self.parent.parent.serverapp.root_dir
+            if root_dir:
+                return str(root_dir)
+        except AttributeError:
+            pass
+        return os.path.expanduser("~")
+
+    async def _run_claude_cli(self, prompt: str, message: Optional[Message]) -> None:
+        """Delegate *prompt* to the Claude Code CLI and stream the response.
+
+        Called when the user's message contains an ``@Claude`` mention.  The
+        ``claude -p <prompt>`` subprocess is run with the JupyterLab root as the
+        working directory, and its stdout is streamed back through the chat.
+        """
+        from .claude_cli import stream_claude_response
+
+        if not prompt:
+            self.send_message(
+                "Please include a prompt after `@Claude`, for example:\n\n"
+                "`@QuickAgent @Claude what does this function do?`"
+            )
+            return
+
+        # Early check so we can give a friendly error without creating a timer.
+        if not find_claude_cli():
+            self.send_message(
+                "**Claude Code CLI not found on PATH.**\n\n"
+                "Install it with:\n"
+                "```bash\n"
+                "npm install -g @anthropic-ai/claude-code\n"
+                "```\n"
+                "See https://claude.ai/code for the full setup guide."
+            )
+            return
+
+        start_time = time.monotonic()
+
+        timer_id = self.ychat.add_message(
+            _NewMessage(body="*⚡ Claude CLI — Elapsed: 0s*", sender=self.id),
+            trigger_actions=[],
+        )
+
+        async def _tick_timer():
+            try:
+                while True:
+                    await asyncio.sleep(1)
+                    elapsed = int(time.monotonic() - start_time)
+                    self.ychat.update_message(
+                        Message(
+                            id=timer_id,
+                            body=f"*⚡ Claude CLI — Elapsed: {elapsed}s*",
+                            time=time.time(),
+                            sender=self.id,
+                            raw_time=False,
+                        )
+                    )
+            except asyncio.CancelledError:
+                pass
+
+        timer_task = asyncio.create_task(_tick_timer())
+
+        try:
+            cwd = self._get_jupyter_root_dir()
+
+            # Prepend attachment content and sender context, mirroring _run_agent.
+            context = (self.process_attachments(message) or "") if message else ""
+            if message and context:
+                context = f"User's username is '{message.sender}'\n\n{context}"
+                full_prompt = f"{context}\n\n{prompt}"
+            elif message:
+                full_prompt = f"User's username is '{message.sender}'\n\n{prompt}"
+            else:
+                full_prompt = prompt
+
+            response_gen = stream_claude_response(full_prompt, cwd=cwd)
+            await self.stream_message(response_gen)
+        except RuntimeError as e:
+            self.send_message(str(e))
+        except Exception as e:
+            self.log.exception("Error running Claude Code CLI.")
+            self.send_message(f"**Error running Claude Code CLI:** {e}")
+        finally:
+            timer_task.cancel()
+            elapsed = time.monotonic() - start_time
+            self.ychat.update_message(
+                Message(
+                    id=timer_id,
+                    body=f"*⚡ Claude CLI — Completed in {elapsed:.1f}s*",
+                    time=time.time(),
+                    sender=self.id,
+                    raw_time=False,
+                )
+            )
 
     # ---- LLM from jupyternaut config ----
 
