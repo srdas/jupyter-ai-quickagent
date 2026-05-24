@@ -556,17 +556,7 @@ class QuickAgentPersona(BasePersona):
 
         try:
             cwd = self._get_jupyter_root_dir()
-
-            # Prepend attachment content and sender context, mirroring _run_agent.
-            context = (self.process_attachments(message) or "") if message else ""
-            if message and context:
-                context = f"User's username is '{message.sender}'\n\n{context}"
-                full_prompt = f"{context}\n\n{prompt}"
-            elif message:
-                full_prompt = f"User's username is '{message.sender}'\n\n{prompt}"
-            else:
-                full_prompt = prompt
-
+            full_prompt = self._build_claude_cli_prompt(prompt, message)
             response_gen = stream_claude_response(full_prompt, cwd=cwd)
             await self.stream_message(response_gen)
         except RuntimeError as e:
@@ -586,6 +576,93 @@ class QuickAgentPersona(BasePersona):
                     raw_time=False,
                 )
             )
+
+    def _build_claude_cli_prompt(self, user_message: str, message: Optional[Message]) -> str:
+        """Build the full prompt string sent to the Claude CLI.
+
+        When an agent is active its entire configuration is embedded as a
+        preamble so Claude Code has the same context that the LangChain deep
+        agent would have:
+
+        * **System prompt** — rendered from ``QUICKAGENT_SYSTEM_PROMPT_TEMPLATE``
+          with the agent's name, purpose, and skills directory content.
+        * **Configured tools** — the list of common tools selected for this agent.
+        * **Configured search tools** — the list of search tools selected for
+          this agent.
+        * **Custom system prompt override** — if the agent has an explicit
+          ``system_prompt`` field, it is appended as additional instructions.
+        * **Attachment / sender context** — notebook selections or file
+          attachments included with the message.
+        * **User request** — the actual text the user typed after ``!Claude``.
+
+        If no agent is active only the attachment context and user message are
+        forwarded.
+        """
+        # ---- attachment / sender context (mirrors _run_agent) ----
+        attachment_ctx = (self.process_attachments(message) or "") if message else ""
+        if message and attachment_ctx:
+            attachment_ctx = f"User's username is '{message.sender}'\n\n{attachment_ctx}"
+        elif message:
+            attachment_ctx = f"User's username is '{message.sender}'"
+
+        # ---- no active agent: simple pass-through ----
+        if not self._active_agent_name:
+            parts = [p for p in (attachment_ctx, user_message) if p]
+            return "\n\n".join(parts)
+
+        config = load_agent(self._active_agent_name)
+        if not config:
+            parts = [p for p in (attachment_ctx, user_message) if p]
+            return "\n\n".join(parts)
+
+        # ---- load skills ----
+        skill_content: str = ""
+        if config.skills_dir:
+            skill_content, _ = self._load_skill_content(config.skills_dir)
+
+        skills_dir = config.skills_dir
+        skills_dir_parent = self._find_project_root(skills_dir) if skills_dir else ""
+
+        # ---- render system prompt (name, purpose, skills, context) ----
+        system_prompt = QUICKAGENT_SYSTEM_PROMPT_TEMPLATE.render(
+            persona_name=config.name,
+            purpose=config.purpose,
+            context=attachment_ctx,
+            skills=skill_content,
+            skills_dir=skills_dir,
+            skills_dir_parent=skills_dir_parent,
+            home_dir=os.path.expanduser("~"),
+        )
+
+        sections: list[str] = [system_prompt]
+
+        # ---- configured tools ----
+        if config.tools:
+            tool_lines = "\n".join(
+                f"  - {t}: {COMMON_TOOLS.get(t, 'custom tool')}"
+                for t in config.tools
+            )
+            sections.append(
+                "Configured tools (use these capabilities when applicable):\n"
+                + tool_lines
+            )
+
+        # ---- configured search tools ----
+        if config.search_tools:
+            search_lines = "\n".join(
+                f"  - {t}: {SEARCH_TOOLS.get(t, 'custom search tool')}"
+                for t in config.search_tools
+            )
+            sections.append("Configured search tools:\n" + search_lines)
+
+        # ---- custom system prompt override ----
+        if config.system_prompt:
+            sections.append("Additional instructions:\n" + config.system_prompt)
+
+        # ---- user request ----
+        sections.append("---\n\nUser request:\n" + user_message)
+
+        return "\n\n".join(sections)
 
     # ---- LLM from jupyternaut config ----
 
