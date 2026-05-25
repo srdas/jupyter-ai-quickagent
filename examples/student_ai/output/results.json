@@ -1,0 +1,122 @@
+{
+  "n": 50000,
+  "columns": [
+    "Student_ID",
+    "Major_Category",
+    "Year_of_Study",
+    "Pre_Semester_GPA",
+    "Weekly_GenAI_Hours",
+    "Primary_Use_Case",
+    "Prompt_Engineering_Skill",
+    "Tool_Diversity",
+    "Paid_Subscription",
+    "Traditional_Study_Hours",
+    "Perceived_AI_Dependency",
+    "Institutional_Policy",
+    "Anxiety_Level_During_Exams",
+    "Post_Semester_GPA",
+    "Skill_Retention_Score",
+    "Burnout_Risk_Level",
+    "GPA_Delta"
+  ],
+  "RQ1": {
+    "GPA_Delta_R2": 0.2645881098962174,
+    "GPA_Delta_GenAI_coef": 0.0003010875696946724,
+    "GPA_Delta_GenAI_p": 0.01089579034458164,
+    "Skill_R2": 0.1716164914772953,
+    "Skill_GenAI_coef": -0.16926648708396413,
+    "Skill_GenAI_p": 2.8027446333343053e-80
+  },
+  "RQ2": {
+    "interaction_p_GPA": {
+      "Weekly_GenAI_Hours:C(Institutional_Policy)[T.Allowed_With_Citation]": 0.8697761849952492,
+      "Weekly_GenAI_Hours:C(Institutional_Policy)[T.Strict_Ban]": 3.642210251323372e-36
+    },
+    "interaction_p_Skill": {
+      "Weekly_GenAI_Hours:C(Institutional_Policy)[T.Allowed_With_Citation]": 0.8953003023683844,
+      "Weekly_GenAI_Hours:C(Institutional_Policy)[T.Strict_Ban]": 2.06109655576379e-20
+    },
+    "slopes_by_policy": [
+      {
+        "policy": "Actively_Encouraged",
+        "n": 14988,
+        "gpa_slope": 0.0008160497598578602,
+        "gpa_p": 1.2962489113094381e-06,
+        "skill_slope": -0.13691849599058337,
+        "skill_p": 1.7911439020829306e-29
+      },
+      {
+        "policy": "Allowed_With_Citation",
+        "n": 25224,
+        "gpa_slope": 0.0008423901745635057,
+        "gpa_p": 9.755281256513727e-11,
+        "skill_slope": -0.13057778598397482,
+        "skill_p": 1.694732006843348e-43
+      },
+      {
+        "policy": "Strict_Ban",
+        "n": 9788,
+        "gpa_slope": -0.002358986748918921,
+        "gpa_p": 7.3117467130189e-28,
+        "skill_slope": -0.3090719293045661,
+        "skill_p": 2.3287617004344923e-88
+      }
+    ]
+  },
+  "RQ3": {
+    "burnout_AUC": 0.7837384242893223,
+    "anxiety_AUC": 0.6881698155964234,
+    "burnout_top_features": {
+      "Weekly_GenAI_Hours": 0.2974199387914877,
+      "Pre_Semester_GPA": 0.1470109113522827,
+      "Traditional_Study_Hours": 0.14649666673672526,
+      "Perceived_AI_Dependency": 0.11082548597322801,
+      "Tool_Diversity": 0.053547824850897784,
+      "Year_of_Study_Graduate": 0.02066635125304344,
+      "Paid_Subscription_True": 0.019250287456289285,
+      "Institutional_Policy_Allowed_With_Citation": 0.01896580654210587,
+      "Prompt_Engineering_Skill_Intermediate": 0.018150343393679186,
+      "Prompt_Engineering_Skill_Beginner": 0.015942798036901643
+    },
+    "anxiety_top_features": {
+      "Weekly_GenAI_Hours": 0.22204375557398473,
+      "Pre_Semester_GPA": 0.1652457070908588,
+      "Traditional_Study_Hours": 0.16434638780894803,
+      "Perceived_AI_Dependency": 0.09961612066495641,
+      "Tool_Diversity": 0.059062984976871166,
+      "Institutional_Policy_Strict_Ban": 0.03889394065011664,
+      "Paid_Subscription_True": 0.021025615522358435,
+      "Institutional_Policy_Allowed_With_Citation": 0.020937599965674715,
+      "Prompt_Engineering_Skill_Intermediate": 0.019022211359218694,
+      "Year_of_Study_Junior": 0.017138002685169497
+    },
+    "logit_burnout_OR": {
+      "OR": {
+        "Weekly_GenAI_Hours": 1.1287604290073348,
+        "Perceived_AI_Dependency": 1.1422169526885988,
+        "Traditional_Study_Hours": 0.9671952279210276,
+        "Tool_Diversity": 1.003837124974414
+      },
+      "p": {
+        "Weekly_GenAI_Hours": 0.0,
+        "Perceived_AI_Dependency": 1.5111623202703205e-52,
+        "Traditional_Study_Hours": 3.8447624460852007e-44,
+        "Tool_Diversity": 0.763971127231652
+      }
+    },
+    "logit_anxiety_OR": {
+      "OR": {
+        "Weekly_GenAI_Hours": 1.0327590320884497,
+        "Perceived_AI_Dependency": 1.2691208063992037,
+        "Traditional_Study_Hours": 1.001848766821706,
+        "Tool_Diversity": 0.999314856855267
+      },
+      "p": {
+        "Weekly_GenAI_Hours": 4.990695015190202e-63,
+        "Perceived_AI_Dependency": 4.478470652135977e-139,
+        "Traditional_Study_Hours": 0.4712401276989515,
+        "Tool_Diversity": 0.9602447430924479
+      }
+    }
+  }
+}
