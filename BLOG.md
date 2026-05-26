@@ -57,11 +57,11 @@ Authentication is handled. What remains is defining *what your agent does*.
 
 When you run `@QuickAgent create`, a five-step wizard asks you:
 
-1. **What do you want to call this agent?**
-2. **What is its purpose?** (A plain-English description — "analyze research datasets and write papers")
-3. **Which tools should it have access to?** (File I/O, Python REPL, shell execution, web fetch, and more)
-4. **Which search tools?** (DuckDuckGo is free and built in; Tavily, Wikipedia, arXiv, and PubMed are optional)
-5. **Does it have a skills directory?** (Point it to a folder of `.md` skill files, and their contents are injected into the system prompt)
+1. What do you want to call this agent?
+2. What is its purpose? (A plain-English description — "analyze research datasets and write papers")
+3. Which tools should it have access to? (File I/O, Python REPL, shell execution, web fetch, and more)
+4. Which search tools? (DuckDuckGo is free and built in; Tavily, Wikipedia, arXiv, and PubMed are optional)
+5. Does it have a skills directory? (Point it to a folder of `.md` skill files, and their contents are injected into the system prompt)
 
 The result is saved as a JSON file in `~/.jupyter/jupyter-ai/quickagents/`. This ensures the agent you created is persistent and reusable. You can edit it by hand if you like.
 
