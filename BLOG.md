@@ -91,7 +91,7 @@ The result is an agent that generates exam questions aligned to those criteria. 
 
 ### The Researcher Agent
 
-You point the Researcher agent at a folder containing a CSV dataset and any other files (paper, dscriptions of the data, etc.). The agent reads the data, formulates research questions, writes and executes Python code to produce statistical analyses and visualizations, generates a reproducible Jupyter notebook, and produces a complete LaTeX paper. 
+You point the Researcher agent at a folder containing a CSV dataset and any other files (paper, dscriptions of the data, etc.). The agent reads the data, formulates research questions, writes and executes Python code to produce statistical analyses and visualizations, generates a reproducible Jupyter notebook, and produces a complete LaTeX paper. This agent needs a frontier LLM, and Claude Opus-4.7 is recommended. 
 
 The output is first-pass research work, not just a summary, but tables, figures, statistical tests, and a structured paper you could work from as a first draft. The [skills directory](https://github.com/srdas/skill-collection/tree/main/researcher/skills) for this agent contains a set of `.md` files defining what good empirical research looks like, what a rigorous paper structure entails, and how to handle common data quality issues. The agent consults all of it and prepares the outputs, leveraging Jupyter notebooks to provide fully reproducible results. 
 
