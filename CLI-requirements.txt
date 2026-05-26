@@ -25,3 +25,11 @@ xmltodict                   # PubMed tool (used by langchain-community PubMedAPI
 
 # Using Bedrock
 boto3
+
+# Data science and visualization
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+plotly
