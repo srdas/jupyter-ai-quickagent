@@ -1,5 +1,5 @@
 # Core CLI dependencies for jupyter_ai_quickagent
-# Install with: pip install -r CLI-requirements.txt
+# Install with: uv pip install -r CLI-requirements.txt
 
 # Agent runtime
 deepagents>=0.5.0a4
