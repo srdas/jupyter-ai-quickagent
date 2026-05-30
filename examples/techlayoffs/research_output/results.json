@@ -1,0 +1,157 @@
+{
+  "top_correlations": {
+    "('ai_automation_impact', 'ai_adoption_level')": 0.838,
+    "('ai_adoption_level', 'ai_automation_impact')": 0.838,
+    "('revenue_growth_percent', 'salary_budget_change')": 0.824,
+    "('salary_budget_change', 'revenue_growth_percent')": 0.824,
+    "('job_security_score', 'layoff_percentage')": 0.772,
+    "('layoff_percentage', 'job_security_score')": 0.772,
+    "('ai_replacement_risk', 'ai_adoption_level')": 0.647,
+    "('ai_adoption_level', 'ai_replacement_risk')": 0.647,
+    "('ai_replacement_risk', 'job_security_score')": 0.609,
+    "('job_security_score', 'ai_replacement_risk')": 0.609,
+    "('layoff_percentage', 'layoffs_count')": 0.598,
+    "('layoffs_count', 'layoff_percentage')": 0.598
+  },
+  "layoff_pct_by_reason": {
+    "mean": {
+      "AI Automation": 13.13,
+      "Cost Cutting": 12.78,
+      "Market Slowdown": 12.79,
+      "Overhiring Correction": 12.48,
+      "Restructuring": 12.72
+    },
+    "median": {
+      "AI Automation": 9.8,
+      "Cost Cutting": 9.2,
+      "Market Slowdown": 9.3,
+      "Overhiring Correction": 9.2,
+      "Restructuring": 9.6
+    },
+    "std": {
+      "AI Automation": 10.31,
+      "Cost Cutting": 10.28,
+      "Market Slowdown": 10.22,
+      "Overhiring Correction": 10.19,
+      "Restructuring": 10.06
+    },
+    "count": {
+      "AI Automation": 2435,
+      "Cost Cutting": 2397,
+      "Market Slowdown": 2334,
+      "Overhiring Correction": 2433,
+      "Restructuring": 2401
+    }
+  },
+  "industry_country_mean": {
+    "Canada": {
+      "AI": 12.81,
+      "Cloud": 12.55,
+      "Cybersecurity": 13.18,
+      "E-Commerce": 12.06,
+      "FinTech": 12.96,
+      "Gaming": 11.93,
+      "Social Media": 13.52
+    },
+    "Germany": {
+      "AI": 12.45,
+      "Cloud": 12.49,
+      "Cybersecurity": 12.92,
+      "E-Commerce": 13.93,
+      "FinTech": 12.32,
+      "Gaming": 12.61,
+      "Social Media": 12.55
+    },
+    "India": {
+      "AI": 13.12,
+      "Cloud": 12.72,
+      "Cybersecurity": 12.64,
+      "E-Commerce": 13.51,
+      "FinTech": 11.94,
+      "Gaming": 12.16,
+      "Social Media": 13.1
+    },
+    "Singapore": {
+      "AI": 12.43,
+      "Cloud": 12.69,
+      "Cybersecurity": 12.98,
+      "E-Commerce": 12.66,
+      "FinTech": 12.62,
+      "Gaming": 12.24,
+      "Social Media": 12.03
+    },
+    "UK": {
+      "AI": 12.53,
+      "Cloud": 14.51,
+      "Cybersecurity": 12.96,
+      "E-Commerce": 13.75,
+      "FinTech": 12.69,
+      "Gaming": 12.88,
+      "Social Media": 14.01
+    },
+    "USA": {
+      "AI": 13.3,
+      "Cloud": 11.82,
+      "Cybersecurity": 12.6,
+      "E-Commerce": 12.1,
+      "FinTech": 12.49,
+      "Gaming": 12.54,
+      "Social Media": 13.58
+    }
+  },
+  "hiring_paradox": {
+    "n": {
+      "Aggressive Hiring": 523,
+      "Downsizing": 1718,
+      "Hiring Freeze": 4975,
+      "Moderate Hiring": 4784
+    },
+    "mean_layoff_pct": {
+      "Aggressive Hiring": 5.21,
+      "Downsizing": 29.01,
+      "Hiring Freeze": 13.3,
+      "Moderate Hiring": 7.24
+    },
+    "median_open_roles": {
+      "Aggressive Hiring": 5850.0,
+      "Downsizing": 996.0,
+      "Hiring Freeze": 1650.0,
+      "Moderate Hiring": 3997.0
+    },
+    "mean_sentiment": {
+      "Aggressive Hiring": 7.11,
+      "Downsizing": 5.23,
+      "Hiring Freeze": 6.47,
+      "Moderate Hiring": 6.91
+    },
+    "mean_job_security": {
+      "Aggressive Hiring": 6.43,
+      "Downsizing": 3.93,
+      "Hiring Freeze": 5.83,
+      "Moderate Hiring": 6.38
+    }
+  },
+  "top_role_share": {
+    "ML Engineer": 18.25,
+    "Data Scientist": 17.66,
+    "Frontend Developer": 11.16,
+    "DevOps Engineer": 11.08,
+    "Software Engineer": 10.75,
+    "Cloud Engineer": 10.58,
+    "Cybersecurity Analyst": 10.32,
+    "Product Manager": 10.2
+  },
+  "ts_summary": {
+    "min_month": "2024-07-01",
+    "min_val": 11.658,
+    "max_month": "2024-12-01",
+    "max_val": 14.023,
+    "overall_mean": 12.784,
+    "std_across_months": 0.569
+  },
+  "regression": {
+    "r2": 0.7162,
+    "n": 12000,
+    "k": 28
+  }
+}

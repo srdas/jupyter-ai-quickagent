@@ -1,0 +1,29 @@
+,coef,se,t,p
+Intercept,1.2017,0.287,4.1877,0.0
+ai_replacement_risk,1.3382,0.0286,46.8697,0.0
+ai_adoption_level,-0.733,0.0406,-18.0585,0.0
+ai_automation_impact,-0.042,0.0257,-1.6319,0.1027
+revenue_growth_percent,0.1114,0.0039,28.7619,0.0
+salary_budget_change,-0.2824,0.0082,-34.2492,0.0
+stock_growth_percent,-0.0005,0.0013,-0.3938,0.6937
+remote_jobs_percentage,0.0033,0.0021,1.552,0.1207
+industry_Cloud,0.4656,0.1867,2.4941,0.0126
+industry_Cybersecurity,0.3158,0.1869,1.6899,0.0911
+industry_E-Commerce,0.4798,0.1864,2.5742,0.01
+industry_FinTech,0.0086,0.1876,0.046,0.9633
+industry_Gaming,-0.016,0.1869,-0.0857,0.9317
+industry_Social Media,0.1232,0.1861,0.6622,0.5078
+country_Germany,-0.0179,0.1738,-0.103,0.918
+country_India,-0.1375,0.1737,-0.7919,0.4284
+country_Singapore,-0.1684,0.1722,-0.9783,0.3279
+country_UK,-0.0938,0.1723,-0.5441,0.5864
+country_USA,-0.2107,0.1729,-1.2187,0.2229
+company_size_Enterprise,0.203,0.1401,1.4494,0.1472
+company_size_Mid-size,0.1858,0.1402,1.3251,0.1851
+company_size_Startup,0.1446,0.1404,1.0299,0.3031
+market_condition_Recession,14.0961,0.1466,96.1815,0.0
+market_condition_Stable,3.1791,0.1232,25.8063,0.0
+reason_for_layoffs_Cost Cutting,-0.0264,0.1568,-0.1681,0.8665
+reason_for_layoffs_Market Slowdown,-0.043,0.1579,-0.2725,0.7853
+reason_for_layoffs_Overhiring Correction,0.0332,0.1563,0.2124,0.8318
+reason_for_layoffs_Restructuring,-0.263,0.1568,-1.6773,0.0935
