@@ -131,18 +131,6 @@ if ask_install "@Claude (claude-agent-acp via npm)"; then
   fi
 fi
 
-# @Gemini
-if ask_install "@Gemini (gemini-cli >= 0.34.0 via npm)"; then
-  echo "Installing gemini-cli ..."
-  npm install -g @google/gemini-cli
-fi
-
-# @Antigravity
-if ask_install "@Antigravity (antigravity-cli via antigravity.google)"; then
-  echo "Installing antigravity-cli ..."
-  curl -fsSL https://antigravity.google/cli/install.sh | bash
-fi
-
 # @Kiro
 if ask_install "@Kiro (kiro-cli >= 1.25.0 via kiro.dev)"; then
   echo "Installing kiro-cli ..."
