@@ -356,3 +356,7 @@ And then, `researcher.json`:
   "system_prompt": ""
 }
 ```
+
+## Related References
+
+- SGHA: Evidence-Grounded Research Problem Discovery with Local Language Models, arXiv [2608.17501](https://arxiv.org/abs/2608.17501v1).
