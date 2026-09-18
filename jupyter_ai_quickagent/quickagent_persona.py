@@ -530,7 +530,7 @@ class QuickAgentPersona(BasePersona):
 
         start_time = time.monotonic()
 
-        timer_id = self.ychat.add_message(
+        timer_id = self.chat.add_message(
             _NewMessage(body="*⚡ Claude CLI — Elapsed: 0s*", sender=self.id),
             trigger_actions=[],
         )
@@ -540,7 +540,7 @@ class QuickAgentPersona(BasePersona):
                 while True:
                     await asyncio.sleep(1)
                     elapsed = int(time.monotonic() - start_time)
-                    self.ychat.update_message(
+                    self.chat.update_message(
                         Message(
                             id=timer_id,
                             body=f"*⚡ Claude CLI — Elapsed: {elapsed}s*",
@@ -573,7 +573,7 @@ class QuickAgentPersona(BasePersona):
         finally:
             timer_task.cancel()
             elapsed = time.monotonic() - start_time
-            self.ychat.update_message(
+            self.chat.update_message(
                 Message(
                     id=timer_id,
                     body=f"*⚡ Claude CLI — Completed in {elapsed:.1f}s*",
@@ -757,7 +757,7 @@ class QuickAgentPersona(BasePersona):
         start_time = time.monotonic()
 
         # Create a timer message that ticks every second while the agent runs
-        timer_id = self.ychat.add_message(
+        timer_id = self.chat.add_message(
             _NewMessage(body="*Elapsed: 0s*", sender=self.id),
             trigger_actions=[],
         )
@@ -767,7 +767,7 @@ class QuickAgentPersona(BasePersona):
                 while True:
                     await asyncio.sleep(1)
                     elapsed = int(time.monotonic() - start_time)
-                    self.ychat.update_message(
+                    self.chat.update_message(
                         Message(
                             id=timer_id,
                             body=f"*Elapsed: {elapsed}s*",
@@ -859,7 +859,7 @@ class QuickAgentPersona(BasePersona):
         finally:
             timer_task.cancel()
             elapsed = time.monotonic() - start_time
-            self.ychat.update_message(
+            self.chat.update_message(
                 Message(
                     id=timer_id,
                     body=f"*Completed in {elapsed:.1f}s*",
